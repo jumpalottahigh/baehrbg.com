@@ -15,15 +15,13 @@ class ProductPageTemplate extends React.Component {
     const product = this.props.data.contentfulProduct
     return (
       <Layout location={this.props.location}>
-        <Product>
-          <h3>{product.createdAt}</h3>
-          <h1>{product.title.title}</h1>
-          <ProductBody
-            dangerouslySetInnerHTML={{
-              __html: product.body.childMarkdownRemark.html,
-            }}
-          />
-        </Product>
+        <h3>{product.createdAt}</h3>
+        <h1>{product.title.title}</h1>
+        <ProductBody
+          dangerouslySetInnerHTML={{
+            __html: product.body.childMarkdownRemark.html,
+          }}
+        />
       </Layout>
     )
   }
