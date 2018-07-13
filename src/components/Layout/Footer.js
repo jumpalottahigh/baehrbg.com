@@ -11,6 +11,7 @@ const StyledFooter = styled.footer`
   color: #777;
   padding: 3rem 0;
   font-size: 0.8rem;
+  background-color: #fafafa;
 `
 
 const SocialMediaLink = styled.a`
@@ -32,7 +33,7 @@ const Footer = () => (
         <FaInstagram />
       </SocialMediaLink>
     </div>
-    <p>Copyright © 2018 BAEHRBG</p>
+    <p>Copyright © 2018 BAEHRBG. All Rights Reserved</p>
     <p>
       Created by <a href="https://www.georgi-yanev.com">Georgi Yanev</a>
     </p>

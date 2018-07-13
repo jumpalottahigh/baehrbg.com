@@ -2,62 +2,32 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-class HamburgerMenu extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isOpen: false,
-      routes: [
-        { name: `Home`, path: `/`, exact: true },
-        { name: `Products`, path: `/products` },
-      ],
-    }
-  }
-  toggleIsOpen = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    })
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <Nav>
-          <Menu className={this.state.isOpen ? `open` : ``}>
-            {this.state.routes.map(route => (
-              <Item key={route.name}>
-                <Link
-                  exact={route.exact}
-                  activeClassName="active"
-                  to={route.path}
-                >
-                  {route.name}
-                </Link>
-              </Item>
-            ))}
-          </Menu>
-          <Backdrop
-            onClick={this.toggleIsOpen}
-            className={this.state.isOpen ? `open` : ``}
-          />
-          <Hamburger
-            onClick={this.toggleIsOpen}
-            className={this.state.isOpen ? `open` : ``}
-          >
-            <div>
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-          </Hamburger>
-        </Nav>
-      </React.Fragment>
-    )
-  }
-}
-
 const Nav = styled.nav`
   padding: 20px 10px;
+  /* background-color: #c5112e; */
+`
+
+const TopNav = styled.div`
+  display: none;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-items: flex-start;
+  }
+
+  li {
+    margin-right: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 1100px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 500px;
+  }
 `
 
 const Hamburger = styled.button`
@@ -81,7 +51,7 @@ const Hamburger = styled.button`
       position: absolute;
       height: 3px;
       width: 100%;
-      background-color: #2d2d2d;
+      background-color: #c5112e;
       border-radius: 3px;
       left: 0;
       -webkit-transform: rotate(0deg);
@@ -197,5 +167,72 @@ const Item = styled.li`
     }
   }
 `
+
+class HamburgerMenu extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isOpen: false,
+      routes: [
+        { name: `Home`, path: `/`, exact: true },
+        { name: `Products`, path: `/products` },
+      ],
+    }
+  }
+  toggleIsOpen = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    })
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <Nav>
+          <TopNav>
+            <ul>
+              <li>
+                <a href="#">Начало</a>
+              </li>
+              <li>
+                <a href="#">Продукти</a>
+              </li>
+              <li>
+                <a href="#">Контакти</a>
+              </li>
+            </ul>
+          </TopNav>
+          <Menu className={this.state.isOpen ? `open` : ``}>
+            {this.state.routes.map(route => (
+              <Item key={route.name}>
+                <Link
+                  exact={route.exact}
+                  activeClassName="active"
+                  to={route.path}
+                >
+                  {route.name}
+                </Link>
+              </Item>
+            ))}
+          </Menu>
+          <Backdrop
+            onClick={this.toggleIsOpen}
+            className={this.state.isOpen ? `open` : ``}
+          />
+          <Hamburger
+            onClick={this.toggleIsOpen}
+            className={this.state.isOpen ? `open` : ``}
+          >
+            <div>
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+          </Hamburger>
+        </Nav>
+      </React.Fragment>
+    )
+  }
+}
 
 export default HamburgerMenu
