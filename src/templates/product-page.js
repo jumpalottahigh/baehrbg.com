@@ -20,12 +20,16 @@ class ProductPageTemplate extends React.Component {
       <Layout location={this.props.location}>
         <Container>
           <h2>{product.title.title}</h2>
-          <Slides data={product.carouselImages} onlyImages />
-          <ProductBody
-            dangerouslySetInnerHTML={{
-              __html: product.body.childMarkdownRemark.html,
-            }}
-          />
+          {product.carouselImages != null && (
+            <Slides data={product.carouselImages} onlyImages />
+          )}
+          {product.body != null && (
+            <ProductBody
+              dangerouslySetInnerHTML={{
+                __html: product.body.childMarkdownRemark.html,
+              }}
+            />
+          )}
         </Container>
       </Layout>
     )
