@@ -91,12 +91,16 @@ export default class Slides extends React.Component {
               <Slide key={slide.id} right>
                 <div>
                   <h1>{slide.title.title}</h1>
-                  <img src={slide.featuredImage.file.url} />
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: slide.shortDescription.childMarkdownRemark.html,
-                    }}
-                  />
+                  {slide.featuredImage != null && (
+                    <img src={slide.featuredImage.file.url} />
+                  )}
+                  {slide.shortDescription != null && (
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: slide.shortDescription.childMarkdownRemark.html,
+                      }}
+                    />
+                  )}
                 </div>
               </Slide>
             ))}

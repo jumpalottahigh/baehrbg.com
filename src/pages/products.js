@@ -39,12 +39,19 @@ class ProductsPage extends Component {
               <Link key={product.id} to={`/products/` + product.slug}>
                 <Product>
                   <h2>{product.title.title}</h2>
-                  <img src={`https:` + product.productsListingImage.file.url} />
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: product.shortDescription.childMarkdownRemark.html,
-                    }}
-                  />
+                  {product.productsListingImage != null && (
+                    <img
+                      src={`https:` + product.productsListingImage.file.url}
+                    />
+                  )}
+                  {product.shortDescription != null && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          product.shortDescription.childMarkdownRemark.html,
+                      }}
+                    />
+                  )}
                 </Product>
               </Link>
             )
