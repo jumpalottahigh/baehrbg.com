@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
+import Slides from '../components/Slides/Slides'
 
 const ProductBody = styled.div`
   img {
@@ -18,8 +19,8 @@ class ProductPageTemplate extends React.Component {
     return (
       <Layout location={this.props.location}>
         <Container>
-          <h3>{product.createdAt}</h3>
-          <h1>{product.title.title}</h1>
+          <h2>{product.title.title}</h2>
+          <Slides data={product.carouselImages} onlyImages />
           <ProductBody
             dangerouslySetInnerHTML={{
               __html: product.body.childMarkdownRemark.html,
@@ -47,7 +48,8 @@ export const pageQuery = graphql`
           excerpt
         }
       }
-      featuredImage {
+      carouselImages {
+        id
         file {
           url
           details {

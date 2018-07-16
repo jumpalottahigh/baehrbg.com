@@ -76,21 +76,30 @@ const Carousel = makeCarousel(CarouselUI)
 
 export default class Slides extends React.Component {
   render() {
+    console.log(this.props.data)
     return (
       <Carousel>
-        {this.props.data.map(({ node: slide }) => (
-          <Slide key={slide.id} right>
-            <div>
-              <h1>{slide.title.title}</h1>
-              <img src={slide.featuredImage.file.url} />
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: slide.shortDescription.childMarkdownRemark.html,
-                }}
-              />
-            </div>
-          </Slide>
-        ))}
+        {this.props.onlyImages
+          ? this.props.data.map(slide => (
+              <Slide key={slide.id} right>
+                <div>
+                  <img src={slide.file.url} />
+                </div>
+              </Slide>
+            ))
+          : this.props.data.map(({ node: slide }) => (
+              <Slide key={slide.id} right>
+                <div>
+                  <h1>{slide.title.title}</h1>
+                  <img src={slide.featuredImage.file.url} />
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: slide.shortDescription.childMarkdownRemark.html,
+                    }}
+                  />
+                </div>
+              </Slide>
+            ))}
       </Carousel>
     )
   }
