@@ -29,7 +29,7 @@ const Product = styled.section`
   }
 `
 
-class ProductPage extends Component {
+class ProductsPage extends Component {
   render() {
     return (
       <Layout>
@@ -39,8 +39,12 @@ class ProductPage extends Component {
               <Link key={product.id} to={`/products/` + product.slug}>
                 <Product>
                   <h2>{product.title.title}</h2>
-                  <img src={`https:` + product.featuredImage.file.url} />
-                  <p>{product.body.childMarkdownRemark.excerpt}</p>
+                  <img src={`https:` + product.productsListingImage.file.url} />
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: product.shortDescription.childMarkdownRemark.html,
+                    }}
+                  />
                 </Product>
               </Link>
             )
@@ -51,10 +55,10 @@ class ProductPage extends Component {
   }
 }
 
-export default ProductPage
+export default ProductsPage
 
-export const ProductPageQuery = graphql`
-  query blogQuery {
+export const ProductsPageQuery = graphql`
+  query productsPageQuery {
     allContentfulProduct {
       edges {
         node {
@@ -63,14 +67,13 @@ export const ProductPageQuery = graphql`
           title {
             title
           }
-          body {
+          shortDescription {
             childMarkdownRemark {
               html
               excerpt
-              timeToRead
             }
           }
-          featuredImage {
+          productsListingImage {
             file {
               url
               details {

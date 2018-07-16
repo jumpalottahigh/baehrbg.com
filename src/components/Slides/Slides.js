@@ -11,7 +11,6 @@ const width = '100%',
   height = '600px'
 
 const Container = styled.div`
-  /* border: 1px solid red; */
   position: relative;
   overflow: hidden;
   width: ${width};
