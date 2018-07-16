@@ -1,14 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
-import FaEmail from 'react-icons/lib/fa/at'
-import Mobile from 'react-icons/lib/fa/phone'
-import Zoom from 'react-reveal/Zoom'
 import Fade from 'react-reveal/Fade'
 
 import Layout from '../components/Layout/Layout'
-import Slides from '../components/Slides/Slides'
 import Container from '../components/Container/Container'
+import Slides from '../components/Slides/Slides'
+import Contacts from '../components/Contacts/Contacts'
 
 import logo from '../../static/BAEHR_Logo_Skala-800px.jpg'
 
@@ -19,17 +17,6 @@ const Logo = styled.img`
 
 const Text = styled.p`
   padding: 1rem 0;
-`
-
-const Contacts = styled.div`
-  padding: 2rem 0;
-
-  h3 {
-    color: #c5112e;
-  }
-
-  p {
-  }
 `
 
 const IndexPage = ({ data }) => {
@@ -51,18 +38,7 @@ const IndexPage = ({ data }) => {
             metus orci. Nulla facilisi. Interdum et malesuada fames ac ante
             ipsum primis in faucibus. Quisque et dignissim dui.
           </Text>
-
-          <Contacts id="contacts">
-            <h3>Контакт</h3>
-            <p>
-              <Mobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
-              <a href="tel:+555555555">+555 555 555</a>
-            </p>
-            <p>
-              <FaEmail style={{ color: '#c5112e', marginRight: '0.5rem' }} />
-              <a href="mailto:test@test.com">test@test.com</a>
-            </p>
-          </Contacts>
+          <Contacts />
         </Fade>
       </Container>
     </Layout>
