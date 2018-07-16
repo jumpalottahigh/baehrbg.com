@@ -2,15 +2,26 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
+import brand from '../../../static/BAEHR_Logo_Skala-800px.jpg'
+
 const Nav = styled.nav`
   padding: 20px 10px;
-  /* background-color: #c5112e; */
+`
+
+const Brand = styled.span`
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  img {
+    width: 80px;
+  }
 `
 
 const TopNav = styled.div`
   display: none;
 
   ul {
+    padding: 0;
     list-style-type: none;
     display: flex;
     justify-items: flex-start;
@@ -21,10 +32,10 @@ const TopNav = styled.div`
     text-transform: uppercase;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1000px) {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 120px;
     display: block;
     width: 500px;
   }
@@ -174,8 +185,8 @@ class HamburgerMenu extends Component {
     this.state = {
       isOpen: false,
       routes: [
-        { name: `Home`, path: `/`, exact: true },
-        { name: `Products`, path: `/products` },
+        { name: `Начало`, path: `/`, exact: true },
+        { name: `Продукти`, path: `/products` },
       ],
     }
   }
@@ -188,16 +199,31 @@ class HamburgerMenu extends Component {
     return (
       <React.Fragment>
         <Nav>
+          <Brand>
+            <Link to="/">
+              <img src={brand} alt="BAEHR logo" />
+            </Link>
+          </Brand>
           <TopNav>
             <ul>
               <li>
-                <a href="#">Начало</a>
+                <Link
+                  exact={this.state.routes[0].exact}
+                  activeClassName="active"
+                  to={this.state.routes[0].path}
+                >
+                  {this.state.routes[0].name}
+                </Link>
               </li>
               <li>
-                <a href="#">Продукти</a>
+                <Link activeClassName="active" to={this.state.routes[1].path}>
+                  {this.state.routes[1].name}
+                </Link>
               </li>
               <li>
-                <a href="#">Контакти</a>
+                <Link activeClassName="active" to="/#contacts">
+                  Контакти
+                </Link>
               </li>
             </ul>
           </TopNav>

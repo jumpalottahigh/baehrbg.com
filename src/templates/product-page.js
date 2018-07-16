@@ -1,7 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+
 import Layout from '../components/Layout/Layout'
+import Container from '../components/Container/Container'
 
 const ProductBody = styled.div`
   img {
@@ -15,13 +17,15 @@ class ProductPageTemplate extends React.Component {
     const product = this.props.data.contentfulProduct
     return (
       <Layout location={this.props.location}>
-        <h3>{product.createdAt}</h3>
-        <h1>{product.title.title}</h1>
-        <ProductBody
-          dangerouslySetInnerHTML={{
-            __html: product.body.childMarkdownRemark.html,
-          }}
-        />
+        <Container>
+          <h3>{product.createdAt}</h3>
+          <h1>{product.title.title}</h1>
+          <ProductBody
+            dangerouslySetInnerHTML={{
+              __html: product.body.childMarkdownRemark.html,
+            }}
+          />
+        </Container>
       </Layout>
     )
   }

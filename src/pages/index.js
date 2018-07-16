@@ -52,7 +52,7 @@ const IndexPage = ({ data }) => {
             ipsum primis in faucibus. Quisque et dignissim dui.
           </Text>
 
-          <Contacts>
+          <Contacts id="contacts">
             <h3>Контакт</h3>
             <p>
               <Mobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
