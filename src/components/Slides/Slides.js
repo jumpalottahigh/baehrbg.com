@@ -8,7 +8,7 @@ import Slide from 'react-reveal/Slide'
 import styled, { css } from 'styled-components'
 
 const width = '100%',
-  height = '600px'
+  height = '700px'
 
 const Container = styled.div`
   position: relative;
@@ -21,6 +21,7 @@ const Children = styled.div`
   height: ${height};
 `
 const Arrow = styled.div`
+  font-family: monospace;
   text-shadow: 1px 1px 1px #fff;
   z-index: 100;
   line-height: ${height};
@@ -77,27 +78,19 @@ export default class Slides extends React.Component {
   render() {
     return (
       <Carousel>
-        <Slide right>
-          <div>
-            <h1>Slide 1</h1>
-            <img src="https://source.unsplash.com/random/800x400" />
-            <p>Slide Description</p>
-          </div>
-        </Slide>
-        <Slide right>
-          <div>
-            <h1>Slide 2</h1>
-            <img src="https://source.unsplash.com/random/800x400" />
-            <p>Slide Description</p>
-          </div>
-        </Slide>
-        <Slide right>
-          <div>
-            <h1>Slide 3</h1>
-            <img src="https://source.unsplash.com/random/800x400" />
-            <p>Slide Description</p>
-          </div>
-        </Slide>
+        {this.props.data.map(({ node: slide }) => (
+          <Slide key={slide.id} right>
+            <div>
+              <h1>{slide.title.title}</h1>
+              <img src={slide.featuredImage.file.url} />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: slide.shortDescription.childMarkdownRemark.html,
+                }}
+              />
+            </div>
+          </Slide>
+        ))}
       </Carousel>
     )
   }

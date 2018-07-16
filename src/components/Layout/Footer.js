@@ -12,6 +12,7 @@ const StyledFooter = styled.footer`
   padding: 3rem 0;
   font-size: 0.8rem;
   background-color: #fafafa;
+  min-height: 120px;
 `
 
 const SocialMediaLink = styled.a`

@@ -13,6 +13,7 @@ import logo from '../../static/BAEHR_Logo_Skala-800px.jpg'
 const Logo = styled.img`
   padding: 0 0 3rem 0;
   width: 400px;
+  max-width: 100%;
 `
 
 const Text = styled.p`
@@ -24,20 +25,13 @@ const IndexPage = ({ data }) => {
     <Layout>
       <Container>
         <Logo src={logo} />
-        <Slides />
+        <Slides data={data.allContentfulProduct.edges} />
         <Fade bottom>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque euismod hendrerit feugiat. Quisque rutrum posuere leo,
-            sed condimentum leo viverra id. Praesent sit amet diam ac ipsum
-            posuere sagittis. Nullam in congue sem, ut tempus nisl. Sed
-            efficitur eu ante ac lacinia.
-          </Text>
-          <Text>
-            Vestibulum iaculis mi a ligula lobortis elementum. Nam sit amet
-            metus orci. Nulla facilisi. Interdum et malesuada fames ac ante
-            ipsum primis in faucibus. Quisque et dignissim dui.
-          </Text>
+          <Text
+            dangerouslySetInnerHTML={{
+              __html: data.contentfulHomePage.text.childMarkdownRemark.html,
+            }}
+          />
           <Contacts />
         </Fade>
       </Container>
@@ -49,16 +43,37 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query indexQuery {
+    contentfulHomePage {
+      text {
+        childMarkdownRemark {
+          html
+        }
+      }
+    }
+
     allContentfulProduct {
       edges {
         node {
-          slug
+          id
           title {
             title
           }
+
           featuredImage {
             file {
               url
+              details {
+                image {
+                  width
+                  height
+                }
+              }
+            }
+          }
+
+          shortDescription {
+            childMarkdownRemark {
+              html
             }
           }
         }

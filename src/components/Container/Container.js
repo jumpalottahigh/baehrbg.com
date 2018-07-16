@@ -6,6 +6,7 @@ const Inner = styled.div`
   margin: 0 auto;
   padding: 0 10px;
   text-align: center;
+  min-height: calc(100vh - 320px);
 `
 
 export default class Container extends React.Component {
