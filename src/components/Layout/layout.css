@@ -14,3 +14,7 @@ a:hover,
 a:active {
   color: #9f0d25;
 }
+
+.active {
+  font-weight: 500;
+}

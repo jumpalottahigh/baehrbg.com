@@ -6,6 +6,9 @@ import brand from '../../../static/BAEHR_Logo_Skala-800px.jpg'
 
 const Nav = styled.nav`
   padding: 20px 10px;
+  background-color: #fafafa;
+  box-shadow: 0 0 2px 2px #cecece;
+  z-index: 999;
 `
 
 const Brand = styled.span`
@@ -218,11 +221,6 @@ class HamburgerMenu extends Component {
               <li>
                 <Link activeClassName="active" to={this.state.routes[1].path}>
                   {this.state.routes[1].name}
-                </Link>
-              </li>
-              <li>
-                <Link activeClassName="active" to="/#contacts">
-                  Контакти
                 </Link>
               </li>
             </ul>
