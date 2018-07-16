@@ -11,18 +11,24 @@ import './layout.css'
 const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
+      query menuEntriesQuery {
+        allContentfulProduct {
+          edges {
+            node {
+              id
+              slug
+              title {
+                title
+              }
+            }
           }
         }
       }
     `}
     render={data => (
       <React.Fragment>
-        <Helmet title={data.site.siteMetadata.title} />
-        <HamburgerMenu />
+        <Helmet />
+        <HamburgerMenu allProductPages={data.allContentfulProduct.edges} />
         {children}
         <Footer />
       </React.Fragment>

@@ -182,6 +182,10 @@ const Item = styled.li`
   }
 `
 
+const SubItem = Item.extend`
+  padding-left: 15px;
+`
+
 class HamburgerMenu extends Component {
   constructor(props) {
     super(props)
@@ -236,6 +240,17 @@ class HamburgerMenu extends Component {
                   {route.name}
                 </Link>
               </Item>
+            ))}
+            {this.props.allProductPages.map(({ node: route }) => (
+              <SubItem key={route.id}>
+                <Link
+                  exact={true}
+                  activeClassName="active"
+                  to={`/products/${route.slug}`}
+                >
+                  {route.title.title}
+                </Link>
+              </SubItem>
             ))}
           </Menu>
           <Backdrop
