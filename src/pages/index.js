@@ -25,7 +25,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <Container>
         <Logo src={logo} />
-        <Slides data={data.allContentfulProduct.edges} />
+        <Slides data={data.contentfulHomePage.carouselImages} onlyImages />
         <Fade bottom>
           <Text
             dangerouslySetInnerHTML={{
@@ -49,31 +49,15 @@ export const pageQuery = graphql`
           html
         }
       }
-    }
 
-    allContentfulProduct {
-      edges {
-        node {
-          id
-          title {
-            title
-          }
-
-          featuredImage {
-            file {
-              url
-              details {
-                image {
-                  width
-                  height
-                }
-              }
-            }
-          }
-
-          shortDescription {
-            childMarkdownRemark {
-              html
+      carouselImages {
+        id
+        file {
+          url
+          details {
+            image {
+              width
+              height
             }
           }
         }

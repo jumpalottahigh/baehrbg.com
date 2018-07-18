@@ -76,7 +76,6 @@ const Carousel = makeCarousel(CarouselUI)
 
 export default class Slides extends React.Component {
   render() {
-    console.log(this.props.data)
     return (
       <Carousel>
         {this.props.onlyImages

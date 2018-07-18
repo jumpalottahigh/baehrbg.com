@@ -80,17 +80,6 @@ export const ProductsPageQuery = graphql`
               excerpt
             }
           }
-          productsListingImage {
-            file {
-              url
-              details {
-                image {
-                  width
-                  height
-                }
-              }
-            }
-          }
         }
       }
     }

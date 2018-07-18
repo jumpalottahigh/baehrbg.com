@@ -193,6 +193,7 @@ class HamburgerMenu extends Component {
       isOpen: false,
       routes: [
         { name: `Начало`, path: `/`, exact: true },
+        { name: `Категории`, path: `/categories` },
         { name: `Продукти`, path: `/products` },
       ],
     }
@@ -225,6 +226,11 @@ class HamburgerMenu extends Component {
               <li>
                 <Link activeClassName="active" to={this.state.routes[1].path}>
                   {this.state.routes[1].name}
+                </Link>
+              </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[2].path}>
+                  {this.state.routes[2].name}
                 </Link>
               </li>
             </ul>
