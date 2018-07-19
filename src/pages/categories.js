@@ -10,6 +10,7 @@ const Category = styled.section`
 
   img {
     max-width: 100%;
+    max-height: 500px;
   }
 
   @media (min-width: 800px) {
@@ -19,7 +20,7 @@ const Category = styled.section`
     grid-template-columns: 3fr 5fr;
   }
 
-  img {
+  .image-wrapper {
     grid-row: 1/-1;
     grid-column: 1/2;
   }
@@ -40,12 +41,14 @@ class CategoriesPage extends Component {
                 <Category>
                   <h2>{category.title}</h2>
                   {category.image != null && (
-                    <img src={`https:` + category.image.file.url} />
+                    <div className="image-wrapper">
+                      <img src={`https:` + category.image.file.url} />
+                    </div>
                   )}
-                  {category.desctiption != null && (
+                  {category.description != null && (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: category.desctiption.childMarkdownRemark.html,
+                        __html: category.description.childMarkdownRemark.html,
                       }}
                     />
                   )}
@@ -69,7 +72,11 @@ export const categoryPageQuery = graphql`
           id
           slug
           title
-          description
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
           image {
             file {
               url

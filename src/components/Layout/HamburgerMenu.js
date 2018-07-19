@@ -195,8 +195,7 @@ class HamburgerMenu extends Component {
       isOpen: false,
       routes: [
         { name: `Начало`, path: `/`, exact: true },
-        { name: `Категории`, path: `/categories` },
-        { name: `Продукти`, path: `/products` },
+        { name: `Продукти`, path: `/categories` },
       ],
     }
   }
@@ -230,11 +229,6 @@ class HamburgerMenu extends Component {
                   {this.state.routes[1].name}
                 </Link>
               </li>
-              <li>
-                <Link activeClassName="active" to={this.state.routes[2].path}>
-                  {this.state.routes[2].name}
-                </Link>
-              </li>
             </ul>
           </TopNav>
           <Menu className={this.state.isOpen ? `open` : ``}>
@@ -254,7 +248,7 @@ class HamburgerMenu extends Component {
                 <Link
                   exact={true}
                   activeClassName="active"
-                  to={`/products/${route.slug}`}
+                  to={`/categories/${route.category.slug}/${route.slug}`}
                 >
                   {route.title.title}
                 </Link>

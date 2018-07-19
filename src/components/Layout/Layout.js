@@ -20,6 +20,9 @@ const Layout = ({ children }) => (
               title {
                 title
               }
+              category {
+                slug
+              }
             }
           }
         }

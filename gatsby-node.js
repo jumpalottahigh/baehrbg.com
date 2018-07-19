@@ -19,6 +19,10 @@ exports.createPages = ({ graphql, actions }) => {
                   title {
                     title
                   }
+                  category {
+                    id
+                    slug
+                  }
                   createdAt
                 }
               }
@@ -29,8 +33,6 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   slug
-                  title
-                  description
                   createdAt
                 }
               }
@@ -46,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
         // Create product pages.
         result.data.allContentfulProduct.edges.forEach(edge => {
           createPage({
-            path: `/products/` + edge.node.slug,
+            path: `/categories/${edge.node.category.slug}/` + edge.node.slug,
             component: productPage,
             context: {
               slug: edge.node.slug,
