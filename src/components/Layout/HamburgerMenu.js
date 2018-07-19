@@ -9,6 +9,8 @@ const Nav = styled.nav`
   background-color: #fafafa;
   box-shadow: 0 0 2px 2px #cecece;
   z-index: 999;
+  width: calc(100% - 20px);
+  position: fixed;
 `
 
 const Brand = styled.span`
