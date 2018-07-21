@@ -196,6 +196,7 @@ class HamburgerMenu extends Component {
       routes: [
         { name: `Начало`, path: `/`, exact: true },
         { name: `Продукти`, path: `/categories` },
+        { name: `Обучения`, path: `/trainings` },
       ],
     }
   }
@@ -229,31 +230,64 @@ class HamburgerMenu extends Component {
                   {this.state.routes[1].name}
                 </Link>
               </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[2].path}>
+                  {this.state.routes[2].name}
+                </Link>
+              </li>
             </ul>
           </TopNav>
           <Menu className={this.state.isOpen ? `open` : ``}>
-            {this.state.routes.map(route => (
-              <Item key={route.name}>
-                <Link
-                  exact={route.exact}
-                  activeClassName="active"
-                  to={route.path}
-                >
-                  {route.name}
-                </Link>
-              </Item>
-            ))}
-            {this.props.allProductPages.map(({ node: route }) => (
-              <SubItem key={route.id}>
-                <Link
-                  exact={true}
-                  activeClassName="active"
-                  to={`/categories/${route.category.slug}/${route.slug}`}
-                >
-                  {route.title.title}
-                </Link>
-              </SubItem>
-            ))}
+            {this.state.routes.map(route => {
+              let renderValue = (
+                <React.Fragment key={route.name}>
+                  <Item>
+                    <Link
+                      exact={route.exact}
+                      activeClassName="active"
+                      to={route.path}
+                    >
+                      {route.name}
+                    </Link>
+                  </Item>
+                </React.Fragment>
+              )
+
+              // As we render menu, render subproducts when we hit the products menu entry
+              if (route.path == '/categories') {
+                let allProductSubItems = this.props.allProductPages.map(
+                  ({ node: route }) => (
+                    <SubItem key={route.id}>
+                      <Link
+                        exact={true}
+                        activeClassName="active"
+                        to={`/categories/${route.slug}`}
+                      >
+                        {route.title}
+                      </Link>
+                    </SubItem>
+                  )
+                )
+
+                // Update the render value with all subitems for the product entries
+                renderValue = (
+                  <React.Fragment key={route.name}>
+                    <Item>
+                      <Link
+                        exact={route.exact}
+                        activeClassName="active"
+                        to={route.path}
+                      >
+                        {route.name}
+                      </Link>
+                    </Item>
+                    <React.Fragment>{allProductSubItems}</React.Fragment>
+                  </React.Fragment>
+                )
+              }
+
+              return renderValue
+            })}
           </Menu>
           <Backdrop
             onClick={this.toggleIsOpen}

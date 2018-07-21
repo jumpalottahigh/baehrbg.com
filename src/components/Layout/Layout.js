@@ -12,17 +12,12 @@ const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
       query menuEntriesQuery {
-        allContentfulProduct {
+        allContentfulCategory {
           edges {
             node {
               id
               slug
-              title {
-                title
-              }
-              category {
-                slug
-              }
+              title
             }
           }
         }
@@ -31,7 +26,7 @@ const Layout = ({ children }) => (
     render={data => (
       <React.Fragment>
         <Helmet />
-        <HamburgerMenu allProductPages={data.allContentfulProduct.edges} />
+        <HamburgerMenu allProductPages={data.allContentfulCategory.edges} />
         {children}
         <Footer />
       </React.Fragment>
