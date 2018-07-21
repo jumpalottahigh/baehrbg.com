@@ -30,7 +30,11 @@ const Footer = () => (
       >
         <FaFacebookSquare />
       </SocialMediaLink>
-      <SocialMediaLink target="blank" href="#" rel="noopener noreferrer">
+      <SocialMediaLink
+        target="blank"
+        href="https://www.instagram.com/medi_meets_pedi/"
+        rel="noopener noreferrer"
+      >
         <FaInstagram />
       </SocialMediaLink>
     </div>
