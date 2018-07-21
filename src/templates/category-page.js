@@ -19,13 +19,6 @@ const Product = styled.section`
     max-width: 100%;
   }
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 3fr 5fr;
-  }
-
   img {
     grid-row: 1/-1;
     grid-column: 1/2;
@@ -33,6 +26,18 @@ const Product = styled.section`
 
   h2 {
     grid-column: 2/-1;
+  }
+
+  .description {
+    text-decoration: none !important;
+    color: #000;
+  }
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 3fr 5fr;
   }
 `
 
@@ -48,27 +53,23 @@ class CategoryPageTemplate extends React.Component {
           {allProductsOfCategory != null &&
             allProductsOfCategory.edges.map(({ node: product }) => {
               return (
-                <Link
-                  key={product.id}
-                  to={`/categories/${category.slug}/${product.slug}`}
-                >
-                  <Product>
+                <Product key={product.id}>
+                  <Link to={`/categories/${category.slug}/${product.slug}`}>
                     <h2>{product.title.title}</h2>
-                    {product.carouselImages != null && (
-                      <img
-                        src={`https:` + product.carouselImages[0].file.url}
-                      />
-                    )}
-                    {product.shortDescription != null && (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html:
-                            product.shortDescription.childMarkdownRemark.html,
-                        }}
-                      />
-                    )}
-                  </Product>
-                </Link>
+                  </Link>
+                  {product.carouselImages != null && (
+                    <img src={`https:` + product.carouselImages[0].file.url} />
+                  )}
+                  {product.shortDescription != null && (
+                    <div
+                      className="description"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          product.shortDescription.childMarkdownRemark.html,
+                      }}
+                    />
+                  )}
+                </Product>
               )
             })}
         </Container>

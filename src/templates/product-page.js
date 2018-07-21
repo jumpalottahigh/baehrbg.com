@@ -7,6 +7,9 @@ import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
 
 const ProductBody = styled.div`
+  text-align: left;
+  padding: 0 30px;
+
   img {
     max-width: 100%;
     margin-bottom: 15px;

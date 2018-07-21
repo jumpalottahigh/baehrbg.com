@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import FaTwitterSquare from 'react-icons/lib/fa/twitter-square'
 import FaFacebookSquare from 'react-icons/lib/fa/facebook-square'
 import FaInstagram from 'react-icons/lib/fa/instagram'
 
@@ -24,13 +23,14 @@ const SocialMediaLink = styled.a`
 const Footer = () => (
   <StyledFooter>
     <div>
-      <SocialMediaLink target="blank" href="#">
-        <FaTwitterSquare />
-      </SocialMediaLink>
-      <SocialMediaLink target="blank" href="#">
+      <SocialMediaLink
+        target="blank"
+        href="https://www.facebook.com/groups/1913687955596206/"
+        rel="noopener noreferrer"
+      >
         <FaFacebookSquare />
       </SocialMediaLink>
-      <SocialMediaLink target="blank" href="#">
+      <SocialMediaLink target="blank" href="#" rel="noopener noreferrer">
         <FaInstagram />
       </SocialMediaLink>
     </div>
