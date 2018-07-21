@@ -5,8 +5,9 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const productPage = path.resolve(`./src/templates/product-page.js`)
     const categoryPage = path.resolve(`./src/templates/category-page.js`)
+    const productPage = path.resolve(`./src/templates/product-page.js`)
+    const trainingPage = path.resolve(`./src/templates/training-page.js`)
     resolve(
       graphql(
         `
@@ -37,6 +38,16 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+
+            allContentfulTraining {
+              edges {
+                node {
+                  id
+                  slug
+                  createdAt
+                }
+              }
+            }
           }
         `
       ).then(result => {
@@ -56,11 +67,22 @@ exports.createPages = ({ graphql, actions }) => {
           })
         })
 
-        // Create product pages.
+        // Create category pages.
         result.data.allContentfulCategory.edges.forEach(edge => {
           createPage({
             path: `/categories/` + edge.node.slug,
             component: categoryPage,
+            context: {
+              slug: edge.node.slug,
+            },
+          })
+        })
+
+        // Create training pages.
+        result.data.allContentfulTraining.edges.forEach(edge => {
+          createPage({
+            path: `/trainings/` + edge.node.slug,
+            component: trainingPage,
             context: {
               slug: edge.node.slug,
             },
