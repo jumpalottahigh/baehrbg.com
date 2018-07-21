@@ -6,7 +6,6 @@ import Fade from 'react-reveal/Fade'
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
-import Contacts from '../components/Contacts/Contacts'
 
 import logo from '../../static/BAEHR_Logo_Skala-800px.jpg'
 
@@ -32,7 +31,6 @@ const IndexPage = ({ data }) => {
               __html: data.contentfulHomePage.text.childMarkdownRemark.html,
             }}
           />
-          <Contacts />
         </Fade>
       </Container>
     </Layout>

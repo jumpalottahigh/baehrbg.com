@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
 import HamburgerMenu from './HamburgerMenu'
+import Contacts from '../Contacts/Contacts'
 import Footer from './Footer'
 
 import 'normalize.css'
@@ -28,6 +29,7 @@ const Layout = ({ children }) => (
         <Helmet />
         <HamburgerMenu allProductPages={data.allContentfulCategory.edges} />
         {children}
+        <Contacts />
         <Footer />
       </React.Fragment>
     )}

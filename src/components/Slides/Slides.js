@@ -63,13 +63,13 @@ const CarouselUI = ({ position, total, handleClick, children }) => (
         {'>'}
       </Arrow>
     </Children>
-    <Dots>
+    {/* <Dots>
       {Array(...Array(total)).map((val, index) => (
         <Dot key={index} onClick={handleClick} data-position={index}>
           {index === position ? '● ' : '○ '}
         </Dot>
       ))}
-    </Dots>
+    </Dots> */}
   </Container>
 )
 const Carousel = makeCarousel(CarouselUI)
