@@ -99,7 +99,10 @@ export const pageQuery = graphql`
       }
     }
 
-    allContentfulProduct(filter: { category: { slug: { eq: $slug } } }) {
+    allContentfulProduct(
+      sort: { fields: order }
+      filter: { category: { slug: { eq: $slug } } }
+    ) {
       edges {
         node {
           id
