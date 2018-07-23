@@ -18,13 +18,17 @@ const Container = styled.div`
 const Children = styled.div`
   width: ${width};
   position: relative;
-  height: ${height};
+  height: 400px;
+
+  @media (min-width: 1000px) {
+    height: ${height};
+  }
 `
 const Arrow = styled.div`
   font-family: monospace;
   text-shadow: 1px 1px 1px #fff;
   z-index: 100;
-  line-height: ${height};
+  line-height: 200px;
   text-align: center;
   position: absolute;
   top: 0;
@@ -40,6 +44,12 @@ const Arrow = styled.div`
       : css`
           left: 0%;
         `};
+  @media (min-width: 550px) {
+    line-height: 400px;
+  }
+  @media (min-width: 1000px) {
+    line-height: ${height};
+  }
 `
 const Dot = styled.span`
   font-size: 1.5em;
@@ -52,6 +62,15 @@ const Dots = styled.span`
   width: ${width};
   z-index: 100;
 `
+
+const Img = styled.img`
+  max-width: 100%;
+
+  @media (min-width: 650px) {
+    min-height: 400px;
+  }
+`
+
 const CarouselUI = ({ position, total, handleClick, children }) => (
   <Container>
     <Children>
@@ -82,7 +101,7 @@ export default class Slides extends React.Component {
           ? this.props.data.map(slide => (
               <Slide key={slide.id} right>
                 <div>
-                  <img src={slide.file.url} />
+                  <Img src={slide.file.url} />
                 </div>
               </Slide>
             ))
@@ -91,7 +110,7 @@ export default class Slides extends React.Component {
                 <div>
                   <h1>{slide.title.title}</h1>
                   {slide.featuredImage != null && (
-                    <img src={slide.featuredImage.file.url} />
+                    <Img src={slide.featuredImage.file.url} />
                   )}
                   {slide.shortDescription != null && (
                     <p
