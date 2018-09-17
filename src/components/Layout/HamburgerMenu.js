@@ -42,7 +42,7 @@ const TopNav = styled.div`
     top: 0;
     left: 120px;
     display: block;
-    width: 500px;
+    width: 550px;
   }
 `
 
@@ -197,6 +197,8 @@ class HamburgerMenu extends Component {
         { name: `Начало`, path: `/`, exact: true },
         { name: `Продукти`, path: `/categories` },
         { name: `Обучения`, path: `/trainings` },
+        { name: `Специалисти`, path: `/specialists` },
+        { name: `За нас`, path: `/about` },
       ],
     }
   }
@@ -233,6 +235,16 @@ class HamburgerMenu extends Component {
               <li>
                 <Link activeClassName="active" to={this.state.routes[2].path}>
                   {this.state.routes[2].name}
+                </Link>
+              </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[3].path}>
+                  {this.state.routes[3].name}
+                </Link>
+              </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[4].path}>
+                  {this.state.routes[4].name}
                 </Link>
               </li>
             </ul>
