@@ -196,7 +196,7 @@ class HamburgerMenu extends Component {
     this.state = {
       isOpen: false,
       routes: [
-        { name: `Начало`, path: `/`, exact: true },
+        { name: `Начало`, path: `/`, exact: 'true' },
         { name: `Продукти`, path: `/categories` },
         { name: `Обучения`, path: `/trainings` },
         { name: `Специалисти`, path: `/specialists` },
@@ -273,7 +273,7 @@ class HamburgerMenu extends Component {
                   ({ node: route }) => (
                     <SubItem key={route.id} onClick={this.toggleIsOpen}>
                       <Link
-                        exact={true}
+                        exact={'true'}
                         activeClassName="active"
                         to={`/categories/${route.slug}`}
                       >
