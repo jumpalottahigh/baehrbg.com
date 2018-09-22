@@ -271,7 +271,7 @@ class HamburgerMenu extends Component {
               if (route.path == '/categories') {
                 let allProductSubItems = this.props.allProductPages.map(
                   ({ node: route }) => (
-                    <SubItem key={route.id}>
+                    <SubItem key={route.id} onClick={this.toggleIsOpen}>
                       <Link
                         exact={true}
                         activeClassName="active"

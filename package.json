@@ -31,6 +31,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "clean": "rm -rf .cache && rm -rf public/",
     "start": "gatsby develop",
     "build": "gatsby build",
     "develop": "gatsby develop",

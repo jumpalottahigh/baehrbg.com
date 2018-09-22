@@ -8,10 +8,10 @@ const StyledFooter = styled.footer`
   flex-flow: column wrap;
   text-align: center;
   color: #777;
-  padding: 3rem 0;
+  padding: 2rem 0;
   font-size: 0.8rem;
   background-color: #fafafa;
-  min-height: 120px;
+  min-height: 100px;
 `
 
 const SocialMediaLink = styled.a`
@@ -39,8 +39,9 @@ const Footer = () => (
       </SocialMediaLink>
     </div>
     <p>Copyright © 2018 BAEHRBG. All Rights Reserved</p>
-    <p>
-      Created by <a href="https://www.georgi-yanev.com">Georgi Yanev</a>
+    <p style={{ fontSize: '0.5rem', margin: 0 }}>
+      Built with Gatsby by{' '}
+      <a href="https://www.georgi-yanev.com">Georgi Yanev</a>
     </p>
   </StyledFooter>
 )
