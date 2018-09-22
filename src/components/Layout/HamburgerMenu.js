@@ -134,6 +134,8 @@ const Menu = styled.ul`
   z-index: 99;
   &.open {
     right: 0;
+    pointer-events: auto;
+    overflow-y: auto;
   }
   @media screen and (max-width: 900px) {
     display: block;
