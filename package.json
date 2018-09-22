@@ -17,6 +17,7 @@
     "gatsby-source-contentful": "^2.0.0",
     "gatsby-transformer-remark": "^2.1.1",
     "gatsby-transformer-sharp": "^2.0.0",
+    "google-map-react": "^1.0.8",
     "normalize.css": "^8.0.0",
     "react": "^16.4.2",
     "react-animations": "^1.0.0",

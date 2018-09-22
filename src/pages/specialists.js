@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
+import Map from '../components/Map/Map'
 
 const Specialist = styled.section`
   margin-bottom: 3rem;
@@ -49,7 +50,7 @@ class SpecialistsPage extends Component {
                 <p>{specialist.phone}</p>
                 <p>{specialist.email}</p>
                 <p>{specialist.address}</p>
-                <p>{specialist.mapCoords}</p>
+                <Map coords={specialist.mapCoords} />
               </Specialist>
             )
           )}
