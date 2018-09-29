@@ -18,7 +18,7 @@ const Specialist = styled.section`
     display: grid;
     grid-gap: 20px;
     grid-template-rows: 1fr 2fr;
-    grid-template-columns: 3fr 5fr;
+    grid-template-columns: 6fr 8fr;
   }
 
   .image-wrapper {
@@ -38,16 +38,11 @@ const Specialist = styled.section`
 
 class SpecialistsPage extends Component {
   render() {
-    console.log(this.props.data.allContentfulSpecialist.edges)
-    // let previousCity = this.props.data.allContentfulSpecialist.edges[0].node.city
-    // let newCity = true
-
     return (
       <Layout>
         <Container>
           {this.props.data.allContentfulSpecialist.edges.map(
             ({ node: specialist }) => {
-              console.log(specialist)
               return (
                 <React.Fragment key={specialist.id}>
                   <h2>{specialist.city}</h2>
