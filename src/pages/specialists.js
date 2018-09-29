@@ -33,26 +33,35 @@ const Specialist = styled.section`
 
 class SpecialistsPage extends Component {
   render() {
+    console.log(this.props.data.allContentfulSpecialist.edges)
+    // let previousCity = this.props.data.allContentfulSpecialist.edges[0].node.city
+    // let newCity = true
+
     return (
       <Layout>
         <Container>
           {this.props.data.allContentfulSpecialist.edges.map(
-            ({ node: specialist }) => (
-              <Specialist key={specialist.id}>
-                <h2>{specialist.name}</h2>
-                {specialist.carouselImages != null && (
-                  <div className="image-wrapper">
-                    <img
-                      src={`https:` + specialist.carouselImages[0].file.url}
-                    />
-                  </div>
-                )}
-                <p>{specialist.phone}</p>
-                <p>{specialist.email}</p>
-                <p>{specialist.address}</p>
-                <Map coords={specialist.mapCoords} />
-              </Specialist>
-            )
+            ({ node: specialist }) => {
+              return (
+                <React.Fragment key={specialist.id}>
+                  <h2>{specialist.city}</h2>
+                  <Specialist>
+                    <h2>{specialist.name}</h2>
+                    {specialist.carouselImages != null && (
+                      <div className="image-wrapper">
+                        <img
+                          src={`https:` + specialist.carouselImages[0].file.url}
+                        />
+                      </div>
+                    )}
+                    <p>{specialist.phone}</p>
+                    <p>{specialist.email}</p>
+                    <p>{specialist.address}</p>
+                    <Map coords={specialist.mapCoords} />
+                  </Specialist>
+                </React.Fragment>
+              )
+            }
           )}
         </Container>
       </Layout>
@@ -64,11 +73,12 @@ export default SpecialistsPage
 
 export const specialistsPageQuery = graphql`
   query specialistsPageQuery {
-    allContentfulSpecialist {
+    allContentfulSpecialist(sort: { fields: city }) {
       edges {
         node {
           id
           name
+          city
           phone
           email
           address
