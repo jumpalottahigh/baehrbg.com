@@ -3,34 +3,36 @@ import GoogleMapReact from 'google-map-react'
 
 const Pin = ({ text }) => <div>{text}</div>
 
-const ZOOM = 11
-
 class SimpleMap extends React.Component {
+  state = {
+    center: {
+      lat: 33.749, // Helsinki: 60.16
+      lng: 84.388, // Helsinki: 24.93
+    },
+    center: {
+      lat: this.props.coords.split(',')[0] || 42.1441156,
+      lng: this.props.coords.split(',')[1] || 24.7058549,
+    },
+    zoom: 11,
+    markers: this.props.markers,
+  }
+
   render() {
-    // Map coords come in a comma separated string
-    const { coords } = this.props
-    const lat = coords.split(',')[0] || '42.1441156'
-    const lng = coords.split(',')[1] || '24.7058549'
-
-    const newCoords = {
-      lat,
-      lng,
-    }
-
-    console.log(newCoords)
+    const { center, markers, zoom } = this.state
 
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          // TODO: add API key
-          // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
-          // Set center to provided one if exists, otherwise fallback
-          center={{ newCoords }}
-          zoom={ZOOM}
-        >
-          <Pin lat={newCoords.lat} lng={newCoords.lng} text={'Marker'} />
-        </GoogleMapReact>
+      <div style={{ minHeight: '50vh' }}>
+        <div style={{ height: '50vh', width: '100%' }}>
+          <GoogleMapReact
+            // TODO: add API key
+            bootstrapURLKeys={{ key: '' }}
+            defaultCenter={center}
+            defaultZoom={zoom}
+          >
+            <Pin lat={center.lat} lng={center.lng} text={'Marker'} />
+          </GoogleMapReact>
+        </div>
       </div>
     )
   }

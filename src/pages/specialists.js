@@ -26,6 +26,11 @@ const Specialist = styled.section`
     grid-column: 1/2;
   }
 
+  .description-wrapper {
+    grid-row: 1/-1;
+    grid-column: 2/-1;
+  }
+
   h2 {
     grid-column: 2/-1;
   }
@@ -42,22 +47,23 @@ class SpecialistsPage extends Component {
         <Container>
           {this.props.data.allContentfulSpecialist.edges.map(
             ({ node: specialist }) => {
+              console.log(specialist)
               return (
                 <React.Fragment key={specialist.id}>
                   <h2>{specialist.city}</h2>
                   <Specialist>
-                    <h2>{specialist.name}</h2>
-                    {specialist.carouselImages != null && (
+                    {specialist.pictures != null && (
                       <div className="image-wrapper">
-                        <img
-                          src={`https:` + specialist.carouselImages[0].file.url}
-                        />
+                        <img src={`https:` + specialist.pictures[0].file.url} />
+                        <h2>{specialist.name}</h2>
+                        <p>{specialist.phone}</p>
+                        <p>{specialist.email}</p>
+                        <p>{specialist.address}</p>
                       </div>
                     )}
-                    <p>{specialist.phone}</p>
-                    <p>{specialist.email}</p>
-                    <p>{specialist.address}</p>
-                    <Map coords={specialist.mapCoords} />
+                    <div className="description-wrapper">
+                      <Map coords={specialist.mapCoords} />
+                    </div>
                   </Specialist>
                 </React.Fragment>
               )
