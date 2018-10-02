@@ -47,12 +47,8 @@ class TrainingsPage extends Component {
                       />
                     </div>
                   )}
-                  {training.description != null && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: training.description.childMarkdownRemark.html,
-                      }}
-                    />
+                  {training.shortDescription != null && (
+                    <div>{training.shortDescription}</div>
                   )}
                 </Training>
               </Link>
@@ -74,11 +70,7 @@ export const trainingsPageQuery = graphql`
           id
           slug
           title
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+          shortDescription
           carouselImages {
             file {
               url

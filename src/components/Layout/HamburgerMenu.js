@@ -42,7 +42,7 @@ const TopNav = styled.div`
     top: 0;
     left: 120px;
     display: block;
-    width: 500px;
+    width: 550px;
   }
 `
 
@@ -134,6 +134,8 @@ const Menu = styled.ul`
   z-index: 99;
   &.open {
     right: 0;
+    pointer-events: auto;
+    overflow-y: auto;
   }
   @media screen and (max-width: 900px) {
     display: block;
@@ -194,9 +196,11 @@ class HamburgerMenu extends Component {
     this.state = {
       isOpen: false,
       routes: [
-        { name: `Начало`, path: `/`, exact: true },
+        { name: `Начало`, path: `/`, exact: 'true' },
         { name: `Продукти`, path: `/categories` },
         { name: `Обучения`, path: `/trainings` },
+        { name: `Специалисти`, path: `/specialists` },
+        { name: `За нас`, path: `/about` },
       ],
     }
   }
@@ -235,6 +239,16 @@ class HamburgerMenu extends Component {
                   {this.state.routes[2].name}
                 </Link>
               </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[3].path}>
+                  {this.state.routes[3].name}
+                </Link>
+              </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[4].path}>
+                  {this.state.routes[4].name}
+                </Link>
+              </li>
             </ul>
           </TopNav>
           <Menu className={this.state.isOpen ? `open` : ``}>
@@ -257,9 +271,9 @@ class HamburgerMenu extends Component {
               if (route.path == '/categories') {
                 let allProductSubItems = this.props.allProductPages.map(
                   ({ node: route }) => (
-                    <SubItem key={route.id}>
+                    <SubItem key={route.id} onClick={this.toggleIsOpen}>
                       <Link
-                        exact={true}
+                        exact={'true'}
                         activeClassName="active"
                         to={`/categories/${route.slug}`}
                       >
