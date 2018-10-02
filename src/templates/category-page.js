@@ -5,13 +5,6 @@ import styled from 'styled-components'
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 
-const CategoryBody = styled.div`
-  img {
-    max-width: 100%;
-    margin-bottom: 15px;
-  }
-`
-
 const Product = styled.section`
   margin-bottom: 3rem;
 
@@ -19,7 +12,7 @@ const Product = styled.section`
     max-width: 100%;
   }
 
-  img {
+  .img-container {
     grid-row: 1/-1;
     grid-column: 1/2;
   }
@@ -58,7 +51,14 @@ class CategoryPageTemplate extends React.Component {
                     <h2>{product.title.title}</h2>
                   </Link>
                   {product.carouselImages != null && (
-                    <img src={`https:` + product.carouselImages[0].file.url} />
+                    <Link
+                      className="img-container"
+                      to={`/categories/${category.slug}/${product.slug}`}
+                    >
+                      <img
+                        src={`https:` + product.carouselImages[0].file.url}
+                      />
+                    </Link>
                   )}
                   {product.shortDescription != null && (
                     <div

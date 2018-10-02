@@ -34,6 +34,7 @@
   "scripts": {
     "clean": "rm -rf .cache && rm -rf public/",
     "start": "gatsby develop",
+    "clean": "rm -rf public && rm -rf .cache",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "dev": "gatsby develop",
