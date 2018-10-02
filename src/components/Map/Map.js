@@ -14,8 +14,8 @@ class SimpleMap extends React.Component {
     const { center, zoom } = this.state
 
     return (
-      <div style={{ minHeight: '50vh' }}>
-        <div style={{ height: '50vh', width: '100%' }}>
+      <div style={{ minHeight: '35vh' }}>
+        <div style={{ height: '35vh', width: '100%' }}>
           <GoogleMapReact
             // TODO: add API key
             bootstrapURLKeys={{ key: '' }}

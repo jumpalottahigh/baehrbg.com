@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Map from '../components/Map/Map'
+import Slides from '../components/Slides/Slides'
 
 const Specialist = styled.section`
   margin-bottom: 3rem;
@@ -27,7 +28,12 @@ const Specialist = styled.section`
   }
 
   .description-wrapper {
-    grid-row: 1/-1;
+    grid-row: 1/2;
+    grid-column: 2/-1;
+  }
+
+  .map-wrapper {
+    grid-row: 2/-1;
     grid-column: 2/-1;
   }
 
@@ -49,14 +55,22 @@ class SpecialistsPage extends Component {
                   <Specialist>
                     {specialist.pictures != null && (
                       <div className="image-wrapper">
-                        <img src={`https:` + specialist.pictures[0].file.url} />
-                        <h2>{specialist.name}</h2>
-                        <p>{specialist.phone}</p>
-                        <p>{specialist.email}</p>
-                        <p>{specialist.address}</p>
+                        {specialist.pictures.length > 1 ? (
+                          <Slides data={specialist.pictures} onlyImages />
+                        ) : (
+                          <img
+                            src={`https:` + specialist.pictures[0].file.url}
+                          />
+                        )}
                       </div>
                     )}
                     <div className="description-wrapper">
+                      <h2>{specialist.name}</h2>
+                      <p>{specialist.phone}</p>
+                      <p>{specialist.email}</p>
+                      <p>{specialist.address}</p>
+                    </div>
+                    <div className="map-wrapper">
                       <Map coords={specialist.mapCoords} />
                     </div>
                   </Specialist>
