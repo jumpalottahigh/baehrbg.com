@@ -8,6 +8,8 @@ exports.createPages = ({ graphql, actions }) => {
     const categoryPage = path.resolve(`./src/templates/category-page.js`)
     const productPage = path.resolve(`./src/templates/product-page.js`)
     const trainingPage = path.resolve(`./src/templates/training-page.js`)
+    const promotionPage = path.resolve(`./src/templates/promotion-page.js`)
+    const blogPage = path.resolve(`./src/templates/blog-page.js`)
     resolve(
       graphql(
         `
@@ -40,6 +42,26 @@ exports.createPages = ({ graphql, actions }) => {
             }
 
             allContentfulTraining {
+              edges {
+                node {
+                  id
+                  slug
+                  createdAt
+                }
+              }
+            }
+
+            allContentfulPromotion {
+              edges {
+                node {
+                  id
+                  slug
+                  createdAt
+                }
+              }
+            }
+
+            allContentfulBlogPost {
               edges {
                 node {
                   id
@@ -88,6 +110,29 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+
+        // Create promotion pages.
+        result.data.allContentfulPromotion.edges.forEach(edge => {
+          createPage({
+            path: `/promotions/` + edge.node.slug,
+            component: promotionPage,
+            context: {
+              slug: edge.node.slug,
+            },
+          })
+        })
+
+        // Create blog pages.
+        result.data.allContentfulBlogPost.edges.forEach(edge => {
+          createPage({
+            path: `/blog/` + edge.node.slug,
+            component: blogPage,
+            context: {
+              slug: edge.node.slug,
+            },
+          })
+        })
+
         return
       })
     )
