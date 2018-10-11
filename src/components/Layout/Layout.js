@@ -22,11 +22,33 @@ const Layout = ({ children }) => (
             }
           }
         }
+
+        contentfulHomePage {
+          metaKeywords {
+            metaKeywords
+          }
+          metaDescription {
+            metaDescription
+          }
+          metaTitle
+        }
       }
     `}
     render={data => (
       <React.Fragment>
-        <Helmet />
+        <Helmet
+          title={data.contentfulHomePage.metaTitle}
+          meta={[
+            {
+              name: 'description',
+              content: data.contentfulHomePage.metaDescription.metaDescription,
+            },
+            {
+              name: 'keywords',
+              content: data.contentfulHomePage.metaKeywords.metaKeywords,
+            },
+          ]}
+        />
         <HamburgerMenu allProductPages={data.allContentfulCategory.edges} />
         {children}
         <Contacts />

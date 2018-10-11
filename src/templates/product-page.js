@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
@@ -21,6 +22,18 @@ class ProductPageTemplate extends React.Component {
     const product = this.props.data.contentfulProduct
     return (
       <Layout location={this.props.location}>
+        <Helmet>
+          {product.title && <title>{`BAEHR - ${product.title.title}`}</title>}
+          {product.metaDescription && (
+            <meta
+              name="description"
+              content={product.metaDescription.metaDescription}
+            />
+          )}
+          {product.metaKeywords && (
+            <meta name="keywords" content={product.metaKeywords.metaKeywords} />
+          )}
+        </Helmet>
         <Container>
           <h2>{product.title.title}</h2>
           {product.carouselImages != null && (
@@ -48,6 +61,12 @@ export const pageQuery = graphql`
       slug
       title {
         title
+      }
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
       body {
         childMarkdownRemark {
