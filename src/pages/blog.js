@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql, Link } from 'gatsby'
 
@@ -34,6 +35,17 @@ class BlogPage extends Component {
   render() {
     return (
       <Layout>
+        <Helmet>
+          {this.props.data.contentfulBlogIndexPage.metaDescription && (
+            <meta
+              name="description"
+              content={this.props.data.contentfulBlogIndexPage.metaDescription.metaDescription}
+            />
+          )}
+          {this.props.data.contentfulBlogIndexPage.metaKeywords && (
+            <meta name="keywords" content={this.props.data.contentfulBlogIndexPage.metaKeywords.metaKeywords} />
+          )}
+        </Helmet>
         <Container>
           {this.props.data.allContentfulBlogPost.edges.map(({ node: blog }) => (
             <Link key={blog.id} to={`/blog/` + blog.slug}>
@@ -71,6 +83,15 @@ export const blogPageQuery = graphql`
             }
           }
         }
+      }
+    }
+
+    contentfulBlogIndexPage {
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }
