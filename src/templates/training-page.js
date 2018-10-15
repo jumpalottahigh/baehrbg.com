@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
@@ -21,6 +22,21 @@ class TrainingPageTemplate extends React.Component {
     const training = this.props.data.contentfulTraining
     return (
       <Layout location={this.props.location}>
+        <Helmet>
+          {training.title && <title>{`BAEHR - ${training.title}`}</title>}
+          {training.metaDescription && (
+            <meta
+              name="description"
+              content={training.metaDescription.metaDescription}
+            />
+          )}
+          {training.metaKeywords && (
+            <meta
+              name="keywords"
+              content={training.metaKeywords.metaKeywords}
+            />
+          )}
+        </Helmet>
         <Container>
           <h2>{training.title}</h2>
           {training.carouselImages != null && (
@@ -57,6 +73,12 @@ export const pageQuery = graphql`
         file {
           url
         }
+      }
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }

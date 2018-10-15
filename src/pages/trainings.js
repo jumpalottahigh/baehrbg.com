@@ -34,6 +34,29 @@ class TrainingsPage extends Component {
   render() {
     return (
       <Layout>
+        {this.props.data.contentfulPageMetadata && (
+          <Helmet>
+            <title>{this.props.data.contentfulPageMetadata.title}</title>
+            {this.props.data.contentfulPageMetadata.metaDescription && (
+              <meta
+                name="description"
+                content={
+                  this.props.data.contentfulPageMetadata.metaDescription
+                    .metaDescription
+                }
+              />
+            )}
+            {this.props.data.contentfulPageMetadata.metaKeywords && (
+              <meta
+                name="keywords"
+                content={
+                  this.props.data.contentfulPageMetadata.metaKeywords
+                    .metaKeywords
+                }
+              />
+            )}
+          </Helmet>
+        )}
         <Container>
           {this.props.data.allContentfulTraining.edges.map(
             ({ node: training }) => (
@@ -77,6 +100,16 @@ export const trainingsPageQuery = graphql`
             }
           }
         }
+      }
+    }
+
+    contentfulPageMetadata(slug: { eq: "trainings" }) {
+      title
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }

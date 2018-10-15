@@ -35,17 +35,29 @@ class BlogPage extends Component {
   render() {
     return (
       <Layout>
-        <Helmet>
-          {this.props.data.contentfulBlogIndexPage.metaDescription && (
-            <meta
-              name="description"
-              content={this.props.data.contentfulBlogIndexPage.metaDescription.metaDescription}
-            />
-          )}
-          {this.props.data.contentfulBlogIndexPage.metaKeywords && (
-            <meta name="keywords" content={this.props.data.contentfulBlogIndexPage.metaKeywords.metaKeywords} />
-          )}
-        </Helmet>
+        {this.props.data.contentfulPageMetadata && (
+          <Helmet>
+            <title>{this.props.data.contentfulPageMetadata.title}</title>
+            {this.props.data.contentfulPageMetadata.metaDescription && (
+              <meta
+                name="description"
+                content={
+                  this.props.data.contentfulPageMetadata.metaDescription
+                    .metaDescription
+                }
+              />
+            )}
+            {this.props.data.contentfulPageMetadata.metaKeywords && (
+              <meta
+                name="keywords"
+                content={
+                  this.props.data.contentfulPageMetadata.metaKeywords
+                    .metaKeywords
+                }
+              />
+            )}
+          </Helmet>
+        )}
         <Container>
           {this.props.data.allContentfulBlogPost.edges.map(({ node: blog }) => (
             <Link key={blog.id} to={`/blog/` + blog.slug}>
@@ -86,7 +98,8 @@ export const blogPageQuery = graphql`
       }
     }
 
-    contentfulBlogIndexPage {
+    contentfulPageMetadata(slug: { eq: "blog" }) {
+      title
       metaDescription {
         metaDescription
       }

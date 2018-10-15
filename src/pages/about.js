@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Fade from 'react-reveal/Fade'
@@ -21,6 +22,25 @@ const Text = styled.p`
 const AboutPage = ({ data }) => {
   return (
     <Layout>
+      {data.contentfulPageMetadata && (
+        <Helmet>
+          <title>{data.contentfulPageMetadata.title}</title>
+          {data.contentfulPageMetadata.metaDescription && (
+            <meta
+              name="description"
+              content={
+                data.contentfulPageMetadata.metaDescription.metaDescription
+              }
+            />
+          )}
+          {data.contentfulPageMetadata.metaKeywords && (
+            <meta
+              name="keywords"
+              content={data.contentfulPageMetadata.metaKeywords.metaKeywords}
+            />
+          )}
+        </Helmet>
+      )}
       <Container>
         <Logo src={logo} />
         <Fade bottom>
@@ -44,6 +64,16 @@ export const aboutPageQuery = graphql`
         childMarkdownRemark {
           html
         }
+      }
+    }
+
+    contentfulPageMetadata(slug: { eq: "about" }) {
+      title
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }

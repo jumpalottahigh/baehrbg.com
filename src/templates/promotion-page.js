@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
@@ -21,6 +22,21 @@ class PromotionPageTemplate extends React.Component {
     const promotion = this.props.data.contentfulPromotion
     return (
       <Layout location={this.props.location}>
+        <Helmet>
+          {promotion.title && <title>{`BAEHR - ${promotion.title}`}</title>}
+          {promotion.metaDescription && (
+            <meta
+              name="description"
+              content={promotion.metaDescription.metaDescription}
+            />
+          )}
+          {promotion.metaKeywords && (
+            <meta
+              name="keywords"
+              content={promotion.metaKeywords.metaKeywords}
+            />
+          )}
+        </Helmet>
         <Container>
           <h2>{promotion.title}</h2>
           {promotion.images != null && (
@@ -57,6 +73,12 @@ export const pageQuery = graphql`
         file {
           url
         }
+      }
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }

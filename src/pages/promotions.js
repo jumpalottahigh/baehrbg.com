@@ -34,6 +34,29 @@ class PromotionsPage extends Component {
   render() {
     return (
       <Layout>
+        {this.props.data.contentfulPageMetadata && (
+          <Helmet>
+            <title>{this.props.data.contentfulPageMetadata.title}</title>
+            {this.props.data.contentfulPageMetadata.metaDescription && (
+              <meta
+                name="description"
+                content={
+                  this.props.data.contentfulPageMetadata.metaDescription
+                    .metaDescription
+                }
+              />
+            )}
+            {this.props.data.contentfulPageMetadata.metaKeywords && (
+              <meta
+                name="keywords"
+                content={
+                  this.props.data.contentfulPageMetadata.metaKeywords
+                    .metaKeywords
+                }
+              />
+            )}
+          </Helmet>
+        )}
         <Container>
           {this.props.data.allContentfulPromotion.edges.map(
             ({ node: promotion }) => (
@@ -75,6 +98,16 @@ export const promotionsPageQuery = graphql`
             }
           }
         }
+      }
+    }
+
+    contentfulPageMetadata(slug: { eq: "promotions" }) {
+      title
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }

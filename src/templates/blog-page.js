@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
@@ -21,6 +22,18 @@ class BlogPageTemplate extends React.Component {
     const blog = this.props.data.contentfulBlogPost
     return (
       <Layout location={this.props.location}>
+        <Helmet>
+          {blog.title && <title>{`BAEHR - ${blog.title}`}</title>}
+          {blog.metaDescription && (
+            <meta
+              name="description"
+              content={blog.metaDescription.metaDescription}
+            />
+          )}
+          {blog.metaKeywords && (
+            <meta name="keywords" content={blog.metaKeywords.metaKeywords} />
+          )}
+        </Helmet>
         <Container>
           <h2>{blog.title}</h2>
           {blog.pictures != null && <Slides data={blog.pictures} onlyImages />}
@@ -54,6 +67,12 @@ export const pageQuery = graphql`
         file {
           url
         }
+      }
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
     }
   }
