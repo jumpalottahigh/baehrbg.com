@@ -57,7 +57,7 @@ class CategoryPageTemplate extends React.Component {
           )}
         </Helmet>
         <Container>
-          <h2>{category.title}</h2>
+          <h1>{category.title}</h1>
 
           {allProductsOfCategory != null &&
             allProductsOfCategory.edges.map(({ node: product }) => {
