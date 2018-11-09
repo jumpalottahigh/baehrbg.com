@@ -18,7 +18,7 @@ try {
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://baehrbg.netlify.com`,
+    siteUrl: `https://baehrbg.com`,
     title: `BAEHRBG`,
     description: `BAEHRBG`,
   },
@@ -56,5 +56,17 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-XXXXX-X`,
+        // Puts tracking script in the head instead of the body
+        head: true,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true,
+      },
+    },
   ],
 }

@@ -26,6 +26,14 @@ export default class HTML extends React.Component {
           />
           <link rel="shortcut icon" href="/favicon.ico" />
           {this.props.headComponents}
+          {/* Cookie Consent resources */}
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"
+          />
+          <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js" />
+          <script src="/cookie-consent.js" />
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
