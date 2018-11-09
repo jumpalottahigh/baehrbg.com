@@ -186,7 +186,7 @@ const Item = styled.li`
   }
 `
 
-const SubItem = Item.extend`
+const SubItem = styled(Item)`
   padding-left: 15px;
 `
 

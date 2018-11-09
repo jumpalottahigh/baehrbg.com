@@ -68,7 +68,13 @@ class BlogPage extends Component {
                     <img src={`https:` + blog.pictures[0].file.url} />
                   </div>
                 )}
-                {blog.shortText != null && <div>{blog.shortText}</div>}
+                {blog.shortText != null && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: blog.shortText.childMarkdownRemark.html,
+                    }}
+                  />
+                )}
               </Blog>
             </Link>
           ))}
@@ -88,7 +94,11 @@ export const blogPageQuery = graphql`
           id
           slug
           title
-          shortText
+          shortText {
+            childMarkdownRemark {
+              html
+            }
+          }
           pictures {
             file {
               url

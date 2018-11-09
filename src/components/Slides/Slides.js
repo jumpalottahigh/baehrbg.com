@@ -18,10 +18,18 @@ const Container = styled.div`
 const Children = styled.div`
   width: ${width};
   position: relative;
-  height: 400px;
+  height: 300px;
+
+  @media (min-width: 500px) {
+    height: 380px;
+  }
+
+  @media (min-width: 700px) {
+    height: 510px;
+  }
 
   @media (min-width: 1000px) {
-    height: ${height};
+    height: 650px;
   }
 `
 const Arrow = styled.div`
