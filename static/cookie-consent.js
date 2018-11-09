@@ -4,10 +4,10 @@ window.addEventListener(`load`, function() {
   window.cookieconsent.initialise({
     palette: {
       popup: {
-        background: `#252e39`,
+        background: `#474747`,
       },
       button: {
-        background: `#14a7d0`,
+        background: `#c5102e`,
       },
     },
     type: `opt-out`,
