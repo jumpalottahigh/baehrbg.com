@@ -33,7 +33,6 @@ export default class HTML extends React.Component {
             href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"
           />
           <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js" />
-          <script src="/cookie-consent.js" />
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
