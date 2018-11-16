@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class CookieConsent extends Component {
+export default class CookieConsent extends React.Component {
   checkCookieStatus = () => {
     if (
       document.cookie.includes('cookieconsent_status=dismiss') ||
@@ -37,33 +37,32 @@ export default class CookieConsent extends Component {
           href: moreLink,
           target: '_blank',
         },
-        type: `opt-out`,
-        onInitialise: function(status) {
-          var type = this.options.type
-          var didConsent = this.hasConsented()
-          if (type == `opt-out` && !didConsent) {
-            // disable cookies
-            // TODO: uncomment once we add google analytics
-            // self.gaOptout()
-          }
-        },
+        type: `info`,
+        // onInitialise: function(status) {
+        //   var type = this.options.type
+        //   var didConsent = this.hasConsented()
+        //   if (type == `opt-out` && !didConsent) {
+        //     // disable cookies
+        //     self.gaOptout()
+        //   }
+        // },
 
-        onStatusChange: function(status, chosenBefore) {
-          var type = this.options.type
-          var didConsent = this.hasConsented()
-          if (type == `opt-out` && !didConsent) {
-            // disable cookies
-            // self.gaOptout()
-          }
-        },
+        // onStatusChange: function(status, chosenBefore) {
+        //   var type = this.options.type
+        //   var didConsent = this.hasConsented()
+        //   if (type == `opt-out` && !didConsent) {
+        //     // disable cookies
+        //     self.gaOptout()
+        //   }
+        // },
 
-        onRevokeChoice: function() {
-          var type = this.options.type
-          if (type == `opt-out`) {
-            // enable cookies
-            document.cookie = `ga-disable-` + self.gaProperty + `=false`
-          }
-        },
+        // onRevokeChoice: function() {
+        //   var type = this.options.type
+        //   if (type == `opt-out`) {
+        //     // enable cookies
+        //     document.cookie = `ga-disable-` + self.gaProperty + `=false`
+        //   }
+        // },
       })
     })
   }
