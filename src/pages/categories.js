@@ -93,10 +93,11 @@ export default CategoriesPage
 
 export const categoryPageQuery = graphql`
   query categoryPageQuery {
-    allContentfulCategory {
+    allContentfulCategory(sort: { fields: order, order: ASC }) {
       edges {
         node {
           id
+          order
           slug
           title
           description {

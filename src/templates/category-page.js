@@ -124,12 +124,13 @@ export const pageQuery = graphql`
     }
 
     allContentfulProduct(
-      sort: { fields: order }
+      sort: { fields: order, order: ASC }
       filter: { category: { slug: { eq: $slug } } }
     ) {
       edges {
         node {
           id
+          order
           slug
           title {
             title

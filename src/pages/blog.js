@@ -91,10 +91,11 @@ export default BlogPage
 
 export const blogPageQuery = graphql`
   query blogPageQuery {
-    allContentfulBlogPost {
+    allContentfulBlogPost(sort: { fields: order, order: ASC }) {
       edges {
         node {
           id
+          order
           slug
           title
           shortText {

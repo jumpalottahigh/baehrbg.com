@@ -89,10 +89,11 @@ export default PromotionsPage
 
 export const promotionsPageQuery = graphql`
   query promotionsPageQuery {
-    allContentfulPromotion {
+    allContentfulPromotion(sort: { fields: order, order: ASC }) {
       edges {
         node {
           id
+          order
           slug
           title
           shortText

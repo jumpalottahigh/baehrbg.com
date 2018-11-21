@@ -89,10 +89,11 @@ export default TrainingsPage
 
 export const trainingsPageQuery = graphql`
   query trainingsPageQuery {
-    allContentfulTraining {
+    allContentfulTraining(sort: { fields: order, order: ASC }) {
       edges {
         node {
           id
+          order
           slug
           title
           shortDescription

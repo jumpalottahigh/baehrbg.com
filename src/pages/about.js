@@ -83,11 +83,12 @@ export default AboutPage
 
 export const aboutPageQuery = graphql`
   query aboutPageQuery {
-    allContentfulZaNas {
+    allContentfulZaNas(sort: { fields: order, order: ASC }) {
       edges {
         node {
           titlename
           id
+          order
           slug
           body {
             childMarkdownRemark {
