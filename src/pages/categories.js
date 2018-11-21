@@ -66,7 +66,10 @@ class CategoriesPage extends Component {
                   <h2>{category.title}</h2>
                   {category.image != null && (
                     <div className="image-wrapper">
-                      <img src={`https:` + category.image.file.url} />
+                      <img
+                        src={`https:` + category.image.file.url}
+                        alt={category.image.description}
+                      />
                     </div>
                   )}
                   {category.description != null && (
@@ -102,6 +105,7 @@ export const categoryPageQuery = graphql`
             }
           }
           image {
+            description
             file {
               url
             }

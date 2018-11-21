@@ -73,6 +73,7 @@ class CategoryPageTemplate extends React.Component {
                     >
                       <img
                         src={`https:` + product.carouselImages[0].file.url}
+                        alt={product.carouselImages[0].description}
                       />
                     </Link>
                   )}
@@ -114,6 +115,7 @@ export const pageQuery = graphql`
         }
       }
       image {
+        description
         id
         file {
           url
@@ -139,6 +141,7 @@ export const pageQuery = graphql`
             }
           }
           carouselImages {
+            description
             file {
               url
             }

@@ -65,7 +65,10 @@ class BlogPage extends Component {
                 <h2>{blog.title}</h2>
                 {blog.pictures != null && (
                   <div className="image-wrapper">
-                    <img src={`https:` + blog.pictures[0].file.url} />
+                    <img
+                      src={`https:` + blog.pictures[0].file.url}
+                      alt={blog.title}
+                    />
                   </div>
                 )}
                 {blog.shortText != null && (
@@ -100,6 +103,7 @@ export const blogPageQuery = graphql`
             }
           }
           pictures {
+            description
             file {
               url
             }

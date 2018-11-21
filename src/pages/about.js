@@ -59,7 +59,10 @@ const AboutPage = ({ data }) => {
             <h2>{person.titlename}</h2>
             {person.carouselImages != null && (
               <div className="image-wrapper">
-                <img src={`https:` + person.carouselImages[0].file.url} />
+                <img
+                  src={`https:` + person.carouselImages[0].file.url}
+                  alt={person.titlename}
+                />
               </div>
             )}
             {person.body != null && (
@@ -92,6 +95,7 @@ export const aboutPageQuery = graphql`
             }
           }
           carouselImages {
+            description
             file {
               url
             }

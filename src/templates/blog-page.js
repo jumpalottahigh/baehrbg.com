@@ -64,6 +64,7 @@ export const pageQuery = graphql`
       }
       pictures {
         id
+        description
         file {
           url
         }

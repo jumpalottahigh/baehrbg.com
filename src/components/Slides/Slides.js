@@ -103,13 +103,14 @@ const Carousel = makeCarousel(CarouselUI)
 
 export default class Slides extends React.Component {
   render() {
+    console.log(this.props.data)
     return (
       <Carousel>
         {this.props.onlyImages
           ? this.props.data.map(slide => (
               <Slide key={slide.id} right>
                 <div>
-                  <Img src={slide.file.url} />
+                  <Img src={slide.file.url} alt={slide.description} />
                 </div>
               </Slide>
             ))
@@ -118,7 +119,10 @@ export default class Slides extends React.Component {
                 <div>
                   <h1>{slide.title.title}</h1>
                   {slide.featuredImage != null && (
-                    <Img src={slide.featuredImage.file.url} />
+                    <Img
+                      src={slide.featuredImage.file.url}
+                      alt={slide.description}
+                    />
                   )}
                   {slide.shortDescription != null && (
                     <p

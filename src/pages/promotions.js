@@ -66,7 +66,10 @@ class PromotionsPage extends Component {
                   <h2>{promotion.title}</h2>
                   {promotion.images != null && (
                     <div className="image-wrapper">
-                      <img src={`https:` + promotion.images[0].file.url} />
+                      <img
+                        src={`https:` + promotion.images[0].file.url}
+                        alt={promotion.images[0].description}
+                      />
                     </div>
                   )}
                   {promotion.shortText != null && (
@@ -94,6 +97,7 @@ export const promotionsPageQuery = graphql`
           title
           shortText
           images {
+            description
             file {
               url
             }

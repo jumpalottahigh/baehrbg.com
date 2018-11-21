@@ -50,6 +50,7 @@ export const pageQuery = graphql`
 
       carouselImages {
         id
+        description
         file {
           url
           details {

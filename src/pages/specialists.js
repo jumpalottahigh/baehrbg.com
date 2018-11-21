@@ -84,6 +84,7 @@ class SpecialistsPage extends Component {
                         ) : (
                           <img
                             src={`https:` + specialist.pictures[0].file.url}
+                            alt={specialist.pictures[0].description}
                           />
                         )}
                       </div>
@@ -123,6 +124,7 @@ export const specialistsPageQuery = graphql`
           address
           mapCoords
           pictures {
+            description
             file {
               url
             }

@@ -68,6 +68,7 @@ class TrainingsPage extends Component {
                     <div className="image-wrapper">
                       <img
                         src={`https:` + training.carouselImages[0].file.url}
+                        alt={training.carouselImages[0].description}
                       />
                     </div>
                   )}
@@ -96,6 +97,7 @@ export const trainingsPageQuery = graphql`
           title
           shortDescription
           carouselImages {
+            description
             file {
               url
             }
