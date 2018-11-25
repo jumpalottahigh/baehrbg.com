@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
-import FaEmail from 'react-icons/lib/fa/envelope'
 import Mobile from 'react-icons/lib/fa/phone'
+import Email from './Email'
 
 const ContactsWrapper = styled.div`
   padding: 2rem 0;
@@ -40,14 +40,8 @@ const Contacts = () => (
             <Mobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
             <a href={`tel:+${phone2}`}>+{phone2}</a>
           </p>
-          <p>
-            <FaEmail style={{ color: '#c5112e', marginRight: '0.5rem' }} />
-            <a href={`mailto:${email1}`}>{email1}</a>
-          </p>
-          <p>
-            <FaEmail style={{ color: '#c5112e', marginRight: '0.5rem' }} />
-            <a href={`mailto:${email2}`}>{email2}</a>
-          </p>
+          <Email address={email1} />
+          <Email address={email2} />
         </ContactsWrapper>
       )
     }}
