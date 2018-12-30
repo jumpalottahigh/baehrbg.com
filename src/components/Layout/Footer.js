@@ -38,7 +38,7 @@ const Footer = () => (
         <FaInstagram />
       </SocialMediaLink>
     </div>
-    <p>Copyright © 2018 BAEHRBG. All Rights Reserved</p>
+    <p>Copyright © 2018-2019 BAEHRBG. All Rights Reserved</p>
     <p style={{ fontSize: '0.5rem', margin: 0 }}>
       Built with Gatsby by{' '}
       <a href="https://www.georgi-yanev.com">Georgi Yanev</a>
