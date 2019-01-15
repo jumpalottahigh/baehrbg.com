@@ -14,7 +14,7 @@ const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
       query menuEntriesQuery {
-        allContentfulCategory {
+        allContentfulCategory(sort: {fields: order, order: ASC}) {
           edges {
             node {
               id
