@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql, Link } from 'gatsby'
@@ -66,8 +67,8 @@ class TrainingsPage extends Component {
                   <h2>{training.title}</h2>
                   {training.carouselImages != null && (
                     <div className="image-wrapper">
-                      <img
-                        src={`https:` + training.carouselImages[0].file.url}
+                      <Img
+                        fluid={training.carouselImages[0].fluid}
                         alt={training.carouselImages[0].description}
                       />
                     </div>
@@ -99,8 +100,8 @@ export const trainingsPageQuery = graphql`
           shortDescription
           carouselImages {
             description
-            file {
-              url
+            fluid(maxWidth: 1200, quality: 75) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

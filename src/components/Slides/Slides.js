@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'gatsby-image'
 import makeCarousel from 'react-reveal/makeCarousel'
 // we'll need the Slide component for sliding animations
 // but you can use any other effect
@@ -71,11 +72,15 @@ const Dots = styled.span`
   z-index: 100;
 `
 
-const Img = styled.img`
-  max-width: 100%;
+const ImgWrapper = styled.div`
+  img {
+    max-width: 100%;
+  }
 
   @media (min-width: 650px) {
-    min-height: 400px;
+    img {
+      min-height: 400px;
+    }
   }
 `
 
@@ -109,7 +114,9 @@ export default class Slides extends React.Component {
           ? this.props.data.map(slide => (
               <Slide key={slide.id} right>
                 <div>
-                  <Img src={slide.file.url} alt={slide.description} />
+                  <ImgWrapper>
+                    <Img fluid={slide.fluid} alt={slide.description} />
+                  </ImgWrapper>
                 </div>
               </Slide>
             ))
@@ -118,10 +125,9 @@ export default class Slides extends React.Component {
                 <div>
                   <h1>{slide.title.title}</h1>
                   {slide.featuredImage != null && (
-                    <Img
-                      src={slide.featuredImage.file.url}
-                      alt={slide.description}
-                    />
+                    <ImgWrapper>
+                      <Img fluid={slide.fluid} alt={slide.description} />
+                    </ImgWrapper>
                   )}
                   {slide.shortDescription != null && (
                     <p

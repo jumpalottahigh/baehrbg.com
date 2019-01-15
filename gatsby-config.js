@@ -43,6 +43,8 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
+              withWebp: true,
+              quality: 75,
               // Remove the default behavior of adding a link to each
               // image.
               linkImagesToOriginal: true,
