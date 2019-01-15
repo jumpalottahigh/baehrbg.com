@@ -1,5 +1,5 @@
 import React from 'react'
-import MapMarker from 'react-icons/lib/fa/map-marker'
+import { FaMapMarker } from 'react-icons/fa'
 
 export default class Marker extends React.Component {
   render() {
@@ -10,6 +10,6 @@ export default class Marker extends React.Component {
     const hoverStyle = {}
     const style = $hover ? hoverStyle : clearHoverStyle
 
-    return <MapMarker style={{ fontSize: '2rem' }} />
+    return <FaMapMarker style={{ fontSize: '2rem' }} />
   }
 }

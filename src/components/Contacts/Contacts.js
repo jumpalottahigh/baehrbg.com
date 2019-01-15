@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
-import Mobile from 'react-icons/lib/fa/phone'
+import { FaMobile } from 'react-icons/fa'
 import Email from './Email'
 
 const ContactsWrapper = styled.div`
@@ -33,11 +33,11 @@ const Contacts = () => (
         <ContactsWrapper id="contacts">
           <h3>{title}</h3>
           <p>
-            <Mobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
+            <FaMobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
             <a href={`tel:+${phone1}`}>+{phone1}</a>
           </p>
           <p>
-            <Mobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
+            <FaMobile style={{ color: '#c5112e', marginRight: '0.5rem' }} />
             <a href={`tel:+${phone2}`}>+{phone2}</a>
           </p>
           <Email address={email1} />

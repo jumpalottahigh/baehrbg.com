@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import FaEmail from 'react-icons/lib/fa/envelope'
+import { FaEnvelope } from 'react-icons/fa'
 
 const Button = styled.button`
   color: #fff;
@@ -30,7 +30,7 @@ export default class Email extends React.Component {
     const { open } = this.state
     return (
       <div style={{ marginBottom: '1rem' }}>
-        <FaEmail style={{ color: '#c5112e', marginRight: '0.5rem' }} />
+        <FaEnvelope style={{ color: '#c5112e', marginRight: '0.5rem' }} />
         {open ? (
           <a href={`mailto:${address}`}>{address}</a>
         ) : (

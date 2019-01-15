@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import FaFacebookSquare from 'react-icons/lib/fa/facebook-square'
-import FaInstagram from 'react-icons/lib/fa/instagram'
+import { FaInstagram, FaFacebookSquare } from 'react-icons/fa'
 
 const StyledFooter = styled.footer`
   display: flex;
