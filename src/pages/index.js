@@ -6,6 +6,7 @@ import Fade from 'react-reveal/Fade'
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
+import Testimonials from '../components/Testimonials/Testimonials'
 
 import logo from '../../static/BAEHR_Logo_Skala-800px.jpg'
 
@@ -32,6 +33,7 @@ const IndexPage = ({ data }) => {
             }}
           />
         </Fade>
+        <Testimonials data={data.allContentfulTestimonial.edges} />
       </Container>
     </Layout>
   )
@@ -57,6 +59,23 @@ export const pageQuery = graphql`
             image {
               width
               height
+            }
+          }
+        }
+      }
+    }
+
+    allContentfulTestimonial(sort: { fields: order }) {
+      edges {
+        node {
+          id
+          title
+          description {
+            description
+          }
+          image {
+            file {
+              url
             }
           }
         }
