@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import Slide from 'react-reveal/Slide'
+import Bounce from 'react-reveal/Bounce'
 import makeCarousel from 'react-reveal/makeCarousel'
 
 const Container = styled.div`
@@ -50,9 +50,9 @@ const Testimonial = styled.div`
 export default class Testimonials extends React.Component {
   render() {
     return (
-      <Carousel>
+      <Carousel defaultWait={4000}>
         {this.props.data.map(({ node: t }) => (
-          <Slide key={t.id} right>
+          <Bounce key={t.id} right>
             <Testimonial>
               {t.image != null && (
                 <div>
@@ -69,7 +69,7 @@ export default class Testimonials extends React.Component {
                 </div>
               )}
             </Testimonial>
-          </Slide>
+          </Bounce>
         ))}
       </Carousel>
     )
