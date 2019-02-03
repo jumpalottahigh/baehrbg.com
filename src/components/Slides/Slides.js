@@ -1,7 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-import makeCarousel from 'react-reveal/makeCarousel'
 import Slide from 'react-reveal/Slide'
 import Carousel from '../Carousel/Carousel'
 
