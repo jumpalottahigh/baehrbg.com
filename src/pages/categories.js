@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql, Link } from 'gatsby'
@@ -66,8 +67,8 @@ class CategoriesPage extends Component {
                   <h2>{category.title}</h2>
                   {category.image != null && (
                     <div className="image-wrapper">
-                      <img
-                        src={`https:` + category.image.file.url}
+                      <Img
+                        fluid={category.image.fluid}
                         alt={category.image.description}
                       />
                     </div>
@@ -107,8 +108,8 @@ export const categoryPageQuery = graphql`
           }
           image {
             description
-            file {
-              url
+            fluid(maxWidth: 1200, quality: 75) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

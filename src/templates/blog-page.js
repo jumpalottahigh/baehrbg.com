@@ -72,6 +72,9 @@ export const pageQuery = graphql`
         file {
           url
         }
+        fluid(maxWidth: 1200, quality: 75) {
+          ...GatsbyContentfulFluid_withWebp
+        }
       }
       metaDescription {
         metaDescription

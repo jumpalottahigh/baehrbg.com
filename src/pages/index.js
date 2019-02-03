@@ -47,18 +47,11 @@ export const pageQuery = graphql`
           html
         }
       }
-
       carouselImages {
         id
         description
-        file {
-          url
-          details {
-            image {
-              width
-              height
-            }
-          }
+        fluid(maxWidth: 1200, quality: 75) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
     }

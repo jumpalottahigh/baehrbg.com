@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout/Layout'
@@ -75,8 +76,8 @@ class CategoryPageTemplate extends React.Component {
                       className="img-container"
                       to={`/categories/${category.slug}/${product.slug}`}
                     >
-                      <img
-                        src={`https:` + product.carouselImages[0].file.url}
+                      <Img
+                        fluid={product.carouselImages[0].fluid}
                         alt={product.carouselImages[0].description}
                       />
                     </Link>
@@ -147,8 +148,8 @@ export const pageQuery = graphql`
           }
           carouselImages {
             description
-            file {
-              url
+            fluid(maxWidth: 1200, quality: 75) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

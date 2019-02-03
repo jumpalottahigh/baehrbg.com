@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
@@ -11,11 +12,6 @@ import Slides from '../components/Slides/Slides'
 const Specialist = styled.section`
   margin-bottom: 3rem;
 
-  img {
-    max-width: 100%;
-    max-height: 500px;
-  }
-
   @media (min-width: 800px) {
     display: grid;
     grid-gap: 20px;
@@ -26,6 +22,11 @@ const Specialist = styled.section`
   .image-wrapper {
     grid-row: 1/-1;
     grid-column: 1/2;
+
+    .img-container {
+      max-width: 100%;
+      max-height: 500px;
+    }
   }
 
   .description-wrapper {
@@ -79,14 +80,16 @@ class SpecialistsPage extends Component {
                   <Specialist>
                     {specialist.pictures != null && (
                       <div className="image-wrapper">
-                        {specialist.pictures.length > 1 ? (
-                          <Slides data={specialist.pictures} onlyImages />
-                        ) : (
-                          <img
-                            src={`https:` + specialist.pictures[0].file.url}
-                            alt={specialist.pictures[0].description}
-                          />
-                        )}
+                        <div className="image-container">
+                          {specialist.pictures.length > 1 ? (
+                            <Slides data={specialist.pictures} onlyImages />
+                          ) : (
+                            <Img
+                              fluid={specialist.pictures[0].fluid}
+                              alt={specialist.pictures[0].description}
+                            />
+                          )}
+                        </div>
                       </div>
                     )}
                     <div className="description-wrapper">
@@ -125,8 +128,8 @@ export const specialistsPageQuery = graphql`
           mapCoords
           pictures {
             description
-            file {
-              url
+            fluid(maxWidth: 700, quality: 75) {
+              ...GatsbyContentfulFluid_tracedSVG
             }
           }
         }
