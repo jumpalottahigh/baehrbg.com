@@ -33,6 +33,13 @@ class ProductPageTemplate extends React.Component {
           {product.metaKeywords && (
             <meta name="keywords" content={product.metaKeywords.metaKeywords} />
           )}
+          {/* OG Image */}
+          {product.carouselImages[0] && (
+            <meta
+              name="og:image"
+              content={product.carouselImages[0].file.url}
+            />
+          )}
         </Helmet>
         <Container>
           <h2>{product.title.title}</h2>

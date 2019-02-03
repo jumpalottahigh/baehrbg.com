@@ -36,6 +36,10 @@ class PromotionPageTemplate extends React.Component {
               content={promotion.metaKeywords.metaKeywords}
             />
           )}
+          {/* OG Image */}
+          {promotion.images[0] && (
+            <meta name="og:image" content={promotion.images[0].file.url} />
+          )}
         </Helmet>
         <Container>
           <h2>{promotion.title}</h2>

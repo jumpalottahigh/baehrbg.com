@@ -56,6 +56,10 @@ class CategoryPageTemplate extends React.Component {
               content={category.metaKeywords.metaKeywords}
             />
           )}
+          {/* OG Image */}
+          {category.image[0] && (
+            <meta name="og:image" content={category.image[0].file.url} />
+          )}
         </Helmet>
         <Container>
           <h1>{category.title}</h1>
