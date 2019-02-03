@@ -15,7 +15,7 @@ const Logo = styled.img`
   max-width: 100%;
 `
 
-const Text = styled.p`
+const Text = styled.div`
   padding: 1rem 0;
 `
 
