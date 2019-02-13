@@ -39,7 +39,7 @@ export default class Email extends React.Component {
               this.setState({ open: !open })
             }}
           >
-            Покажи имайл
+            Покажи имейл
           </Button>
         )}
       </div>
