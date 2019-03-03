@@ -38,7 +38,7 @@ class TrainingPageTemplate extends React.Component {
           )}
         </Helmet>
         <Container>
-          <h2>{training.title}</h2>
+          <h1>{training.title}</h1>
           {training.carouselImages != null && (
             <Slides data={training.carouselImages} onlyImages />
           )}

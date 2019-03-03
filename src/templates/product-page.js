@@ -42,7 +42,7 @@ class ProductPageTemplate extends React.Component {
           )}
         </Helmet>
         <Container>
-          <h2>{product.title.title}</h2>
+          <h1>{product.title.title}</h1>
           {product.carouselImages != null && (
             <Slides data={product.carouselImages} onlyImages />
           )}

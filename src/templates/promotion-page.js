@@ -42,7 +42,7 @@ class PromotionPageTemplate extends React.Component {
           )}
         </Helmet>
         <Container>
-          <h2>{promotion.title}</h2>
+          <h1>{promotion.title}</h1>
           {promotion.images != null && (
             <Slides data={promotion.images} onlyImages />
           )}

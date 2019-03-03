@@ -39,7 +39,7 @@ class BlogPageTemplate extends React.Component {
           )}
         </Helmet>
         <Container>
-          <h2>{blog.title}</h2>
+          <h1>{blog.title}</h1>
           {blog.pictures != null && <Slides data={blog.pictures} onlyImages />}
           {blog.article != null && (
             <BlogBody
