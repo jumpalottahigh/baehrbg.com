@@ -18,3 +18,8 @@ a:active {
 .active {
   font-weight: 500;
 }
+
+h2,
+h3 {
+  text-align: center;
+}

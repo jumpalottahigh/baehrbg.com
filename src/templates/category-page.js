@@ -69,7 +69,7 @@ class CategoryPageTemplate extends React.Component {
               return (
                 <Product key={product.id}>
                   <Link to={`/categories/${category.slug}/${product.slug}`}>
-                    <h2>{product.title.title}</h2>
+                    <h1>{product.title.title}</h1>
                   </Link>
                   {product.carouselImages != null && (
                     <Link

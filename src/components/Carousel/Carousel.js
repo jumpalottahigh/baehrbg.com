@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import makeCarousel from 'react-reveal/makeCarousel'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 const width = '100%',
   height = '700px'
@@ -54,36 +55,17 @@ const Arrow = styled.div`
     line-height: ${height};
   }
 `
-const Dot = styled.span`
-  font-size: 1.5em;
-  cursor: pointer;
-  text-shadow: 1px 1px 1px #fff;
-  user-select: none;
-`
-const Dots = styled.span`
-  text-align: center;
-  width: ${width};
-  z-index: 100;
-`
-
 const CarouselUI = ({ position, total, handleClick, children }) => (
   <Container>
     <Children>
       {children}
       <Arrow onClick={handleClick} data-position={position - 1}>
-        {'<'}
+        <FaAngleLeft />
       </Arrow>
       <Arrow right onClick={handleClick} data-position={position + 1}>
-        {'>'}
+        <FaAngleRight />
       </Arrow>
     </Children>
-    {/* <Dots>
-      {Array(...Array(total)).map((val, index) => (
-        <Dot key={index} onClick={handleClick} data-position={index}>
-          {index === position ? '● ' : '○ '}
-        </Dot>
-      ))}
-    </Dots> */}
   </Container>
 )
 const Carousel = makeCarousel(CarouselUI)
