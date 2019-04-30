@@ -116,7 +116,7 @@ export default SpecialistsPage
 
 export const specialistsPageQuery = graphql`
   query specialistsPageQuery {
-    allContentfulSpecialist(sort: { fields: city }) {
+    allContentfulSpecialist(sort: { fields: order, order: ASC }) {
       edges {
         node {
           id
