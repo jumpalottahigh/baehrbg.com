@@ -10,6 +10,7 @@ exports.createPages = ({ graphql, actions }) => {
     const trainingPage = path.resolve(`./src/templates/training-page.js`)
     const promotionPage = path.resolve(`./src/templates/promotion-page.js`)
     const blogPage = path.resolve(`./src/templates/blog-page.js`)
+    const specialistPage = path.resolve(`./src/templates/specialist-page.js`)
     resolve(
       graphql(
         `
@@ -62,6 +63,16 @@ exports.createPages = ({ graphql, actions }) => {
             }
 
             allContentfulBlogPost {
+              edges {
+                node {
+                  id
+                  slug
+                  createdAt
+                }
+              }
+            }
+
+            allContentfulSpecialist {
               edges {
                 node {
                   id
@@ -127,6 +138,17 @@ exports.createPages = ({ graphql, actions }) => {
           createPage({
             path: `/blog/` + edge.node.slug,
             component: blogPage,
+            context: {
+              slug: edge.node.slug,
+            },
+          })
+        })
+
+        // Create specialist pages.
+        result.data.allContentfulSpecialist.edges.forEach(edge => {
+          createPage({
+            path: `/specialists/` + edge.node.slug,
+            component: specialistPage,
             context: {
               slug: edge.node.slug,
             },

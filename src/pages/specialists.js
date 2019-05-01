@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
@@ -73,38 +73,36 @@ class SpecialistsPage extends Component {
         )}
         <Container>
           {this.props.data.allContentfulSpecialist.edges.map(
-            ({ node: specialist }) => {
-              return (
-                <React.Fragment key={specialist.id}>
-                  <h2>{specialist.city}</h2>
-                  <Specialist>
-                    {specialist.pictures != null && (
-                      <div className="image-wrapper">
-                        <div className="image-container">
-                          {specialist.pictures.length > 1 ? (
-                            <Slides data={specialist.pictures} onlyImages />
-                          ) : (
-                            <Img
-                              fluid={specialist.pictures[0].fluid}
-                              alt={specialist.pictures[0].description}
-                            />
-                          )}
-                        </div>
+            ({ node: specialist }) => (
+              <Link key={specialist.id} to={`/specialists/` + specialist.slug}>
+                <h2>{specialist.city}</h2>
+                <Specialist>
+                  {specialist.pictures != null && (
+                    <div className="image-wrapper">
+                      <div className="image-container">
+                        {specialist.pictures.length > 1 ? (
+                          <Slides data={specialist.pictures} onlyImages />
+                        ) : (
+                          <Img
+                            fluid={specialist.pictures[0].fluid}
+                            alt={specialist.pictures[0].description}
+                          />
+                        )}
                       </div>
-                    )}
-                    <div className="description-wrapper">
-                      <h2>{specialist.name}</h2>
-                      <p>{specialist.phone}</p>
-                      <p>{specialist.email}</p>
-                      <p>{specialist.address}</p>
                     </div>
-                    <div className="map-wrapper">
-                      <Map coords={specialist.mapCoords} />
-                    </div>
-                  </Specialist>
-                </React.Fragment>
-              )
-            }
+                  )}
+                  <div className="description-wrapper">
+                    <h2>{specialist.name}</h2>
+                    <p>{specialist.phone}</p>
+                    <p>{specialist.email}</p>
+                    <p>{specialist.address}</p>
+                  </div>
+                  <div className="map-wrapper">
+                    <Map coords={specialist.mapCoords} />
+                  </div>
+                </Specialist>
+              </Link>
+            )
           )}
         </Container>
       </Layout>
@@ -120,6 +118,7 @@ export const specialistsPageQuery = graphql`
       edges {
         node {
           id
+          slug
           name
           city
           phone
