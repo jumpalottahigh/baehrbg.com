@@ -18,10 +18,11 @@ const ImgWrapper = styled.div`
 
 export default class Slides extends React.Component {
   render() {
+    const { data } = this.props
     return (
-      <Carousel>
+      <Carousel noArrows={data.length < 2 ? true : false}>
         {this.props.onlyImages
-          ? this.props.data.map(slide => (
+          ? data.map(slide => (
               <Slide key={slide.id} right>
                 <div>
                   <ImgWrapper>
@@ -30,7 +31,7 @@ export default class Slides extends React.Component {
                 </div>
               </Slide>
             ))
-          : this.props.data.map(({ node: slide }) => (
+          : data.map(({ node: slide }) => (
               <Slide key={slide.id} right>
                 <div>
                   <h1>{slide.title.title}</h1>

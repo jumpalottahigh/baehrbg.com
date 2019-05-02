@@ -55,16 +55,20 @@ const Arrow = styled.div`
     line-height: ${height};
   }
 `
-const CarouselUI = ({ position, total, handleClick, children }) => (
+const CarouselUI = ({ position, total, handleClick, children, noArrows }) => (
   <Container>
     <Children>
       {children}
-      <Arrow onClick={handleClick} data-position={position - 1}>
-        <FaAngleLeft />
-      </Arrow>
-      <Arrow right onClick={handleClick} data-position={position + 1}>
-        <FaAngleRight />
-      </Arrow>
+      {!noArrows && (
+        <React.Fragment>
+          <Arrow onClick={handleClick} data-position={position - 1}>
+            <FaAngleLeft />
+          </Arrow>
+          <Arrow right onClick={handleClick} data-position={position + 1}>
+            <FaAngleRight />
+          </Arrow>
+        </React.Fragment>
+      )}
     </Children>
   </Container>
 )

@@ -23,9 +23,13 @@ const Specialist = styled.section`
     grid-row: 1/-1;
     grid-column: 1/2;
 
-    .img-container {
+    .image-container {
       max-width: 100%;
-      max-height: 500px;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
     }
   }
 
