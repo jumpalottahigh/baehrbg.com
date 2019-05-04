@@ -5,6 +5,13 @@ import Slide from 'react-reveal/Slide'
 import Carousel from '../Carousel/Carousel'
 
 const ImgWrapper = styled.div`
+  width: 100%;
+  display: flex;
+
+  .gatsby-image-wrapper {
+    width: 100%;
+  }
+
   img {
     max-width: 100%;
   }
@@ -22,17 +29,22 @@ export default class Slides extends React.Component {
     return (
       <Carousel noArrows={data.length < 2 ? true : false}>
         {this.props.onlyImages
-          ? data.map(slide => (
-              <Slide key={slide.id} right>
-                <div>
+          ? data.map((slide, index) => (
+              <Slide key={index} right>
+                <div
+                  style={{
+                    display: 'flex',
+                    height: '100%',
+                  }}
+                >
                   <ImgWrapper>
                     <Img fluid={slide.fluid} alt={slide.description} />
                   </ImgWrapper>
                 </div>
               </Slide>
             ))
-          : data.map(({ node: slide }) => (
-              <Slide key={slide.id} right>
+          : data.map(({ node: slide }, index) => (
+              <Slide key={index} right>
                 <div>
                   <h1>{slide.title.title}</h1>
                   {slide.featuredImage != null && (
