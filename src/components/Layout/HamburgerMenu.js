@@ -37,7 +37,7 @@ const TopNav = styled.div`
     text-transform: uppercase;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1130px) {
     position: absolute;
     top: 0;
     left: 120px;
