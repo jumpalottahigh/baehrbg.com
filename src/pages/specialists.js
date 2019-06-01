@@ -102,7 +102,14 @@ class SpecialistsPage extends Component {
                     <p>{specialist.address}</p>
                   </div>
                   <div className="map-wrapper">
-                    <Map coords={specialist.mapCoords} />
+                    {/* TODO: spacing */}
+                    {/* <Map coords={specialist.mapCoords} /> */}
+                    {specialist && specialist.map && (
+                      <Img
+                        fluid={specialist.map.fluid}
+                        alt={specialist.map.title}
+                      />
+                    )}
                   </div>
                 </Specialist>
               </Link>
@@ -128,7 +135,12 @@ export const specialistsPageQuery = graphql`
           phone
           email
           address
-          mapCoords
+          map {
+            title
+            fluid(maxWidth: 700, quality: 75) {
+              ...GatsbyContentfulFluid_tracedSVG
+            }
+          }
           pictures {
             description
             fluid(maxWidth: 700, quality: 75) {

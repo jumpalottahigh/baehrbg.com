@@ -200,6 +200,7 @@ class HamburgerMenu extends Component {
         { name: `Продукти`, path: `/categories` },
         { name: `Обучения`, path: `/trainings` },
         { name: `Специалисти`, path: `/specialists` },
+        { name: `Партньори`, path: `/терапевтичен-педикюр` },
         { name: `Промоции`, path: `/promotions` },
         { name: `Блог`, path: `/blog` },
         { name: `За нас`, path: `/about` },
