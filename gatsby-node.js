@@ -11,6 +11,10 @@ exports.createPages = ({ graphql, actions }) => {
     const promotionPage = path.resolve(`./src/templates/promotion-page.js`)
     const blogPage = path.resolve(`./src/templates/blog-page.js`)
     const specialistPage = path.resolve(`./src/templates/specialist-page.js`)
+    const partnerTypesPage = path.resolve(
+      `./src/templates/partner-types-page.js`
+    )
+    const partnerPage = path.resolve(`./src/templates/partner-page.js`)
     resolve(
       graphql(
         `
@@ -77,6 +81,30 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   id
                   slug
+                  createdAt
+                }
+              }
+            }
+
+            allContentfulPartnerTypes {
+              edges {
+                node {
+                  id
+                  slug
+                  createdAt
+                }
+              }
+            }
+
+            allContentfulPartner {
+              edges {
+                node {
+                  id
+                  slug
+                  partnerType {
+                    id
+                    slug
+                  }
                   createdAt
                 }
               }
@@ -149,6 +177,30 @@ exports.createPages = ({ graphql, actions }) => {
           createPage({
             path: `/specialists/` + edge.node.slug,
             component: specialistPage,
+            context: {
+              slug: edge.node.slug,
+            },
+          })
+        })
+
+        // Create partner types pages.
+        result.data.allContentfulPartnerTypes.edges.forEach(edge => {
+          createPage({
+            path: `/терапевтичен-педикюр/` + edge.node.slug,
+            component: partnerTypesPage,
+            context: {
+              slug: edge.node.slug,
+            },
+          })
+        })
+
+        // Create partner pages.
+        result.data.allContentfulPartner.edges.forEach(edge => {
+          createPage({
+            path:
+              `/терапевтичен-педикюр/${edge.node.partnerType.slug}/` +
+              edge.node.slug,
+            component: partnerPage,
             context: {
               slug: edge.node.slug,
             },
