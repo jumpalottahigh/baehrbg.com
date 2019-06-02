@@ -11,13 +11,6 @@ import Slides from '../components/Slides/Slides'
 const Specialist = styled.section`
   margin-bottom: 3rem;
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 6fr 8fr;
-  }
-
   .image-wrapper {
     grid-row: 1/-1;
     grid-column: 1/2;
@@ -44,6 +37,13 @@ const Specialist = styled.section`
 
   h2 {
     grid-column: 2/-1;
+  }
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 6fr 8fr;
   }
 `
 
@@ -101,7 +101,6 @@ class SpecialistsPage extends Component {
                     <p>{specialist.address}</p>
                   </div>
                   <div className="map-wrapper">
-                    {/* TODO: spacing */}
                     {specialist && specialist.map && (
                       <Img
                         fluid={specialist.map.fluid}
