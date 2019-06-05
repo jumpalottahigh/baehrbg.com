@@ -37,12 +37,12 @@ const TopNav = styled.div`
     text-transform: uppercase;
   }
 
-  @media (min-width: 1130px) {
+  @media (min-width: 1280px) {
     position: absolute;
     top: 0;
     left: 120px;
     display: block;
-    width: 750px;
+    width: 1100px;
   }
 `
 
@@ -260,6 +260,11 @@ class HamburgerMenu extends Component {
               <li>
                 <Link activeClassName="active" to={this.state.routes[6].path}>
                   {this.state.routes[6].name}
+                </Link>
+              </li>
+              <li>
+                <Link activeClassName="active" to={this.state.routes[7].path}>
+                  {this.state.routes[7].name}
                 </Link>
               </li>
             </ul>
