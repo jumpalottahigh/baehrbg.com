@@ -37,7 +37,7 @@ const TopNav = styled.div`
     text-transform: uppercase;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1130px) {
     position: absolute;
     top: 0;
     left: 120px;
@@ -200,6 +200,7 @@ class HamburgerMenu extends Component {
         { name: `Продукти`, path: `/categories` },
         { name: `Обучения`, path: `/trainings` },
         { name: `Специалисти`, path: `/specialists` },
+        { name: `Партньори`, path: `/терапевтичен-педикюр` },
         { name: `Промоции`, path: `/promotions` },
         { name: `Блог`, path: `/blog` },
         { name: `За нас`, path: `/about` },

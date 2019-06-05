@@ -8,8 +8,15 @@ import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
 
-const Specialist = styled.section`
+const Partners = styled.section`
   margin-bottom: 3rem;
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 6fr 8fr;
+  }
 
   .image-wrapper {
     grid-row: 1/-1;
@@ -38,16 +45,9 @@ const Specialist = styled.section`
   h2 {
     grid-column: 2/-1;
   }
-
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 6fr 8fr;
-  }
 `
 
-class SpecialistsPage extends Component {
+class PartnerTypesPage extends Component {
   render() {
     return (
       <Layout>
@@ -75,40 +75,38 @@ class SpecialistsPage extends Component {
           </Helmet>
         )}
         <Container>
-          {this.props.data.allContentfulSpecialist.edges.map(
-            ({ node: specialist }) => (
-              <Link key={specialist.id} to={`/specialists/` + specialist.slug}>
-                <h2>{specialist.city}</h2>
-                <Specialist>
-                  {specialist.pictures != null && (
+          {this.props.data.allContentfulPartnerTypes.edges.map(
+            ({ node: partner }) => (
+              <Link
+                key={partner.id}
+                to={`/терапевтичен-педикюр/` + partner.slug}
+              >
+                <Partners>
+                  {partner.pictures != null && (
                     <div className="image-wrapper">
                       <div className="image-container">
-                        {specialist.pictures.length > 1 ? (
-                          <Slides data={specialist.pictures} onlyImages />
+                        {partner.pictures.length > 1 ? (
+                          <Slides data={partner.pictures} onlyImages />
                         ) : (
                           <Img
-                            fluid={specialist.pictures[0].fluid}
-                            alt={specialist.pictures[0].description}
+                            fluid={partner.pictures[0].fluid}
+                            alt={partner.pictures[0].title}
                           />
                         )}
                       </div>
                     </div>
                   )}
                   <div className="description-wrapper">
-                    <h2>{specialist.name}</h2>
-                    <p>{specialist.phone}</p>
-                    <p>{specialist.email}</p>
-                    <p>{specialist.address}</p>
-                  </div>
-                  <div className="map-wrapper">
-                    {specialist && specialist.map && (
-                      <Img
-                        fluid={specialist.map.fluid}
-                        alt={specialist.map.title}
+                    <h2>{partner.name}</h2>
+                    {partner.description != null && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: partner.description.childMarkdownRemark.html,
+                        }}
                       />
                     )}
                   </div>
-                </Specialist>
+                </Partners>
               </Link>
             )
           )}
@@ -118,28 +116,23 @@ class SpecialistsPage extends Component {
   }
 }
 
-export default SpecialistsPage
+export default PartnerTypesPage
 
-export const specialistsPageQuery = graphql`
-  query specialistsPageQuery {
-    allContentfulSpecialist(sort: { fields: order, order: ASC }) {
+export const partnerTypesPageQuery = graphql`
+  query partnerTypesPageQuery {
+    allContentfulPartnerTypes(sort: { fields: order, order: ASC }) {
       edges {
         node {
           id
           slug
           name
-          city
-          phone
-          email
-          address
-          map {
-            title
-            fluid(maxWidth: 700, quality: 75) {
-              ...GatsbyContentfulFluid_tracedSVG
+          description {
+            childMarkdownRemark {
+              html
             }
           }
           pictures {
-            description
+            title
             fluid(maxWidth: 700, quality: 75) {
               ...GatsbyContentfulFluid_tracedSVG
             }
@@ -148,7 +141,7 @@ export const specialistsPageQuery = graphql`
       }
     }
 
-    contentfulPageMetadata(slug: { eq: "specialists" }) {
+    contentfulPageMetadata(slug: { eq: "терапевтичен-педикюр" }) {
       title
       metaDescription {
         metaDescription
