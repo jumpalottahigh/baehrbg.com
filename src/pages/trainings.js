@@ -8,27 +8,35 @@ import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 
 const Training = styled.section`
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 
   img {
     max-width: 100%;
     max-height: 500px;
   }
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 3fr 5fr;
-  }
-
   .image-wrapper {
-    grid-row: 1/-1;
-    grid-column: 1/2;
+    height: 100%;
   }
 
-  h2 {
-    grid-column: 2/-1;
+  @media (min-width: 800px) {
+    display: flex;
+
+    .left,
+    .right {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .left {
+      width: 35%;
+    }
+
+    .right {
+      width: 65%;
+    }
   }
 `
 
@@ -64,18 +72,22 @@ class TrainingsPage extends Component {
             ({ node: training }) => (
               <Link key={training.id} to={`/trainings/` + training.slug}>
                 <Training>
-                  <h2>{training.title}</h2>
-                  {training.carouselImages != null && (
-                    <div className="image-wrapper">
-                      <Img
-                        fluid={training.carouselImages[0].fluid}
-                        alt={training.carouselImages[0].description}
-                      />
-                    </div>
-                  )}
-                  {training.shortDescription != null && (
-                    <div>{training.shortDescription}</div>
-                  )}
+                  <div className="left">
+                    {training.carouselImages != null && (
+                      <div className="image-wrapper">
+                        <Img
+                          fluid={training.carouselImages[0].fluid}
+                          alt={training.carouselImages[0].description}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="right">
+                    <h2>{training.title}</h2>
+                    {training.shortDescription != null && (
+                      <div>{training.shortDescription}</div>
+                    )}
+                  </div>
                 </Training>
               </Link>
             )

@@ -15,19 +15,23 @@ const Blog = styled.section`
   }
 
   @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 3fr 5fr;
-  }
+    display: flex;
 
-  .image-wrapper {
-    grid-row: 1/-1;
-    grid-column: 1/2;
-  }
+    .left,
+    .right {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      padding: 1rem;
+    }
 
-  h2 {
-    grid-column: 2/-1;
+    .left {
+      width: 40%;
+    }
+
+    .right {
+      width: 60%;
+    }
   }
 `
 
@@ -62,22 +66,26 @@ class BlogPage extends Component {
           {this.props.data.allContentfulBlogPost.edges.map(({ node: blog }) => (
             <Link key={blog.id} to={`/blog/` + blog.slug}>
               <Blog>
-                <h2>{blog.title}</h2>
-                {blog.pictures != null && (
-                  <div className="image-wrapper">
-                    <img
-                      src={`https:` + blog.pictures[0].file.url}
-                      alt={blog.title}
+                <div className="left">
+                  {blog.pictures != null && (
+                    <div className="image-wrapper">
+                      <img
+                        src={`https:` + blog.pictures[0].file.url}
+                        alt={blog.title}
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="right">
+                  <h2>{blog.title}</h2>
+                  {blog.shortText != null && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: blog.shortText.childMarkdownRemark.html,
+                      }}
                     />
-                  </div>
-                )}
-                {blog.shortText != null && (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: blog.shortText.childMarkdownRemark.html,
-                    }}
-                  />
-                )}
+                  )}
+                </div>
               </Blog>
             </Link>
           ))}

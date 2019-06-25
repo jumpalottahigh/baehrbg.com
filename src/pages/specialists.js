@@ -40,10 +40,38 @@ const Specialist = styled.section`
   }
 
   @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 6fr 8fr;
+    display: flex;
+
+    .image-wrapper,
+    .map-wrapper {
+      height: 100%;
+    }
+
+    .map-wrapper {
+      max-height: 220px;
+
+      .gatsby-image-wrapper {
+        height: 100%;
+      }
+    }
+
+    .left,
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .left {
+      width: 40%;
+    }
+
+    .right {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 60%;
+    }
   }
 `
 
@@ -80,33 +108,37 @@ class SpecialistsPage extends Component {
               <Link key={specialist.id} to={`/specialists/` + specialist.slug}>
                 <h2>{specialist.city}</h2>
                 <Specialist>
-                  {specialist.pictures != null && (
-                    <div className="image-wrapper">
-                      <div className="image-container">
-                        {specialist.pictures.length > 1 ? (
-                          <Slides data={specialist.pictures} onlyImages />
-                        ) : (
-                          <Img
-                            fluid={specialist.pictures[0].fluid}
-                            alt={specialist.pictures[0].description}
-                          />
-                        )}
+                  <div className="left">
+                    {specialist.pictures != null && (
+                      <div className="image-wrapper">
+                        <div className="image-container">
+                          {specialist.pictures.length > 1 ? (
+                            <Slides data={specialist.pictures} onlyImages />
+                          ) : (
+                            <Img
+                              fluid={specialist.pictures[0].fluid}
+                              alt={specialist.pictures[0].description}
+                            />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  <div className="description-wrapper">
-                    <h2>{specialist.name}</h2>
-                    <p>{specialist.phone}</p>
-                    <p>{specialist.email}</p>
-                    <p>{specialist.address}</p>
-                  </div>
-                  <div className="map-wrapper">
-                    {specialist && specialist.map && (
-                      <Img
-                        fluid={specialist.map.fluid}
-                        alt={specialist.map.title}
-                      />
                     )}
+                  </div>
+                  <div className="right">
+                    <div className="description-wrapper">
+                      <h2>{specialist.name}</h2>
+                      <p>{specialist.phone}</p>
+                      <p>{specialist.email}</p>
+                      <p>{specialist.address}</p>
+                    </div>
+                    <div className="map-wrapper">
+                      {specialist && specialist.map && (
+                        <Img
+                          fluid={specialist.map.fluid}
+                          alt={specialist.map.title}
+                        />
+                      )}
+                    </div>
                   </div>
                 </Specialist>
               </Link>
