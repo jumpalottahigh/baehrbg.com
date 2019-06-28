@@ -14,13 +14,6 @@ const Promotion = styled.section`
     max-height: 500px;
   }
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 3fr 5fr;
-  }
-
   .image-wrapper {
     grid-row: 1/-1;
     grid-column: 1/2;
@@ -28,6 +21,28 @@ const Promotion = styled.section`
 
   h2 {
     grid-column: 2/-1;
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
+
+    .left,
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .left {
+      width: 35%;
+    }
+
+    .right {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 65%;
+    }
   }
 `
 
@@ -63,18 +78,22 @@ class PromotionsPage extends Component {
             ({ node: promotion }) => (
               <Link key={promotion.id} to={`/promotions/` + promotion.slug}>
                 <Promotion>
-                  <h2>{promotion.title}</h2>
-                  {promotion.images != null && (
-                    <div className="image-wrapper">
-                      <img
-                        src={`https:` + promotion.images[0].file.url}
-                        alt={promotion.images[0].description}
-                      />
-                    </div>
-                  )}
-                  {promotion.shortText != null && (
-                    <div>{promotion.shortText}</div>
-                  )}
+                  <div className="left">
+                    {promotion.images != null && (
+                      <div className="image-wrapper">
+                        <img
+                          src={`https:` + promotion.images[0].file.url}
+                          alt={promotion.images[0].description}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="right">
+                    <h2>{promotion.title}</h2>
+                    {promotion.shortText != null && (
+                      <div>{promotion.shortText}</div>
+                    )}
+                  </div>
                 </Promotion>
               </Link>
             )

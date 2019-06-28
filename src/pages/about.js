@@ -14,13 +14,6 @@ const Person = styled.section`
     max-height: 500px;
   }
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 3fr 5fr;
-  }
-
   .image-wrapper {
     grid-row: 1/-1;
     grid-column: 1/2;
@@ -28,6 +21,28 @@ const Person = styled.section`
 
   h2 {
     grid-column: 2/-1;
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
+
+    .left,
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .left {
+      width: 35%;
+    }
+
+    .right {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 65%;
+    }
   }
 `
 
@@ -56,22 +71,26 @@ const AboutPage = ({ data }) => {
       <Container>
         {data.allContentfulZaNas.edges.map(({ node: person }) => (
           <Person key={person.id}>
-            <h2>{person.titlename}</h2>
-            {person.carouselImages != null && (
-              <div className="image-wrapper">
-                <img
-                  src={`https:` + person.carouselImages[0].file.url}
-                  alt={person.titlename}
+            <div className="left">
+              {person.carouselImages != null && (
+                <div className="image-wrapper">
+                  <img
+                    src={`https:` + person.carouselImages[0].file.url}
+                    alt={person.titlename}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="right">
+              <h2>{person.titlename}</h2>
+              {person.body != null && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: person.body.childMarkdownRemark.html,
+                  }}
                 />
-              </div>
-            )}
-            {person.body != null && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: person.body.childMarkdownRemark.html,
-                }}
-              />
-            )}
+              )}
+            </div>
           </Person>
         ))}
       </Container>

@@ -28,6 +28,15 @@ class PartnerPageTemplate extends React.Component {
           {partner.map[0] && (
             <meta name="og:image" content={partner.map[0].file.url} />
           )}
+          {partner.metaDescription && (
+            <meta
+              name="description"
+              content={partner.metaDescription.metaDescription}
+            />
+          )}
+          {partner.metaKeywords && (
+            <meta name="keywords" content={partner.metaKeywords.metaKeywords} />
+          )}
         </Helmet>
         <Container>
           <h1>{partner.name}</h1>
@@ -54,6 +63,12 @@ export const pageQuery = graphql`
       phone
       site
       address
+      metaKeywords {
+        metaKeywords
+      }
+      metaDescription {
+        metaDescription
+      }
       map {
         id
         description
