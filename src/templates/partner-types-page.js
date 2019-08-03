@@ -44,6 +44,18 @@ class PartnerTypePageTemplate extends React.Component {
       <Layout location={this.props.location}>
         <Helmet>
           {partnerType.name && <title>{`BAEHR - ${partnerType.name}`}</title>}
+          {partnerType.metaDescription && (
+            <meta
+              name="description"
+              content={partnerType.metaDescription.metaDescription}
+            />
+          )}
+          {partnerType.metaKeywords && (
+            <meta
+              name="keywords"
+              content={partnerType.metaKeywords.metaKeywords}
+            />
+          )}
           {/* OG Image */}
           {partnerType.pictures[0] && (
             <meta name="og:image" content={partnerType.pictures[0].file.url} />
@@ -102,6 +114,12 @@ export const pageQuery = graphql`
         childMarkdownRemark {
           html
         }
+      }
+      metaDescription {
+        metaDescription
+      }
+      metaKeywords {
+        metaKeywords
       }
       pictures {
         description
