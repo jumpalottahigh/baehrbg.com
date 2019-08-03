@@ -11,13 +11,6 @@ import Slides from '../components/Slides/Slides'
 const Partners = styled.section`
   margin-bottom: 3rem;
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 1fr 2fr;
-    grid-template-columns: 6fr 8fr;
-  }
-
   .image-wrapper {
     grid-row: 1/-1;
     grid-column: 1/2;
@@ -44,6 +37,28 @@ const Partners = styled.section`
 
   h2 {
     grid-column: 2/-1;
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
+
+    .left,
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .left {
+      width: 35%;
+    }
+
+    .right {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 65%;
+    }
   }
 `
 
@@ -82,21 +97,23 @@ class PartnerTypesPage extends Component {
                 to={`/терапевтичен-педикюр/` + partner.slug}
               >
                 <Partners>
-                  {partner.pictures != null && (
-                    <div className="image-wrapper">
-                      <div className="image-container">
-                        {partner.pictures.length > 1 ? (
-                          <Slides data={partner.pictures} onlyImages />
-                        ) : (
-                          <Img
-                            fluid={partner.pictures[0].fluid}
-                            alt={partner.pictures[0].title}
-                          />
-                        )}
+                  <div className="left">
+                    {partner.pictures != null && (
+                      <div className="image-wrapper">
+                        <div className="image-container">
+                          {partner.pictures.length > 1 ? (
+                            <Slides data={partner.pictures} onlyImages />
+                          ) : (
+                            <Img
+                              fluid={partner.pictures[0].fluid}
+                              alt={partner.pictures[0].title}
+                            />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  <div className="description-wrapper">
+                    )}
+                  </div>
+                  <div className="right">
                     <h2>{partner.name}</h2>
                     {partner.description != null && (
                       <div
@@ -106,6 +123,7 @@ class PartnerTypesPage extends Component {
                       />
                     )}
                   </div>
+                  <div className="description-wrapper" />
                 </Partners>
               </Link>
             )

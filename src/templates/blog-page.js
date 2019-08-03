@@ -11,9 +11,17 @@ const BlogBody = styled.div`
   text-align: left;
   padding: 0 30px;
 
+  iframe {
+    display: flex;
+    margin: 0 auto;
+  }
+
   img {
-    max-width: 100%;
+    width: 100%;
     margin-bottom: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
   }
 `
 
