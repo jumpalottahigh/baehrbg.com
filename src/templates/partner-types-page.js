@@ -73,7 +73,7 @@ class PartnerTypePageTemplate extends React.Component {
                       partner.slug
                     }`}
                   >
-                    <h1>{partner.name}</h1>
+                    <h2>{partner.name}</h2>
                   </Link>
                   {partner.map != null && (
                     <Link
