@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <Container>
-        <Logo src={logo} />
+        <Logo src={logo} alt="BAEHRBG" />
         <Slides data={data.contentfulHomePage.carouselImages} onlyImages />
         <Fade bottom>
           <Text

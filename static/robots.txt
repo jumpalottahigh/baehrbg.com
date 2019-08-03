@@ -1,2 +1,3 @@
+Sitemap: https://www.baehrbg.com/sitemap.xml
 User-agent: *
 Disallow: 
