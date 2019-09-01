@@ -7,7 +7,7 @@ import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
 
-import logo from '../../static/BAEHR_Logo_Skala-800px.jpg'
+import logo from '../../static/baehrbg-logo.jpg'
 
 const Logo = styled.img`
   width: 400px;
