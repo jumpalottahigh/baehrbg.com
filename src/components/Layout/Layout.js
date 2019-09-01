@@ -14,7 +14,7 @@ const Layout = ({ children }) => (
   <StaticQuery
     query={graphql`
       query menuEntriesQuery {
-        allContentfulCategory(sort: {fields: order, order: ASC}) {
+        allContentfulCategory(sort: { fields: order, order: ASC }) {
           edges {
             node {
               id
@@ -59,7 +59,28 @@ const Layout = ({ children }) => (
               content: data.contentfulHomePage.metaKeywords.metaKeywords,
             },
           ]}
-        />
+        >
+          <script type="application/ld+json">
+            {`
+              {
+                "@context" : "http://schema.org",
+                "@type" : "Organization",
+                "name" : "Baehr Bulgaria",
+              "url" : "https://www.baehrbg.com",
+              "sameAs" : [
+                "https://www.facebook.com/baehrbg/",
+                  "https://www.instagram.com/medi_meets_pedi/"
+                ],
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Plovdiv, Trakia 71",
+                  "postalCode": "4023",
+                  "addressCountry": "BG"
+                }
+              }
+          `}
+          </script>
+        </Helmet>
         <HamburgerMenu allProductPages={data.allContentfulCategory.edges} />
         {children}
         <Contacts />

@@ -7,10 +7,9 @@ import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
 
-import logo from '../../static/BAEHR_Logo_Skala-800px.jpg'
+import logo from '../../static/baehrbg-logo.jpg'
 
 const Logo = styled.img`
-  padding: 0 0 3rem 0;
   width: 400px;
   max-width: 100%;
 `
@@ -24,6 +23,12 @@ const IndexPage = ({ data }) => {
     <Layout>
       <Container>
         <Logo src={logo} alt="BAEHRBG" />
+        {data.contentfulHomePage.title && (
+          <h1>{data.contentfulHomePage.title}</h1>
+        )}
+        {data.contentfulHomePage.subtitle && (
+          <h2>{data.contentfulHomePage.subtitle}</h2>
+        )}
         <Slides data={data.contentfulHomePage.carouselImages} onlyImages />
         <Fade bottom>
           <Text
@@ -42,6 +47,8 @@ export default IndexPage
 export const pageQuery = graphql`
   query indexQuery {
     contentfulHomePage {
+      title
+      subtitle
       text {
         childMarkdownRemark {
           html

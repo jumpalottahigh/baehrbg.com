@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import brand from '../../../static/BAEHR_Logo_Skala-800px.jpg'
+import brand from '../../../static/baehrbg-logo.jpg'
 
 const Nav = styled.nav`
   padding: 20px 10px;
