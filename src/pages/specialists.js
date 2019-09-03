@@ -167,13 +167,13 @@ export const specialistsPageQuery = graphql`
           map {
             title
             fluid(maxWidth: 700, quality: 75) {
-              ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           pictures {
             description
             fluid(maxWidth: 700, quality: 75) {
-              ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
