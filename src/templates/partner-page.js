@@ -15,9 +15,9 @@ class PartnerPageTemplate extends React.Component {
         <Helmet>
           {partner.name && <title>{`BAEHR - ${partner.name}`}</title>}
           {/* OG Image */}
-          {partner.map[0] && (
+          {/* {partner.map[0] && (
             <meta name="og:image" content={partner.map[0].file.url} />
-          )}
+          )} */}
           {partner.metaDescription && (
             <meta
               name="description"
@@ -58,16 +58,6 @@ export const pageQuery = graphql`
       }
       metaDescription {
         metaDescription
-      }
-      map {
-        id
-        description
-        file {
-          url
-        }
-        fluid(maxWidth: 1200, quality: 75) {
-          ...GatsbyContentfulFluid_withWebp
-        }
       }
     }
   }

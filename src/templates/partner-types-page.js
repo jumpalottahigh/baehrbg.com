@@ -69,25 +69,10 @@ class PartnerTypePageTemplate extends React.Component {
               return (
                 <Partner key={partner.id}>
                   <Link
-                    to={`/терапевтичен-педикюр/${partnerType.slug}/${
-                      partner.slug
-                    }`}
+                    to={`/терапевтичен-педикюр/${partnerType.slug}/${partner.slug}`}
                   >
                     <h2>{partner.name}</h2>
                   </Link>
-                  {partner.map != null && (
-                    <Link
-                      className="img-container"
-                      to={`/терапевтичен-педикюр/${partnerType.slug}/${
-                        partner.slug
-                      }`}
-                    >
-                      <Img
-                        fluid={partner.map[0].fluid}
-                        alt={partner.map[0].description}
-                      />
-                    </Link>
-                  )}
                   <div>
                     <p>{partner.phone}</p>
                     <p>{partner.site}</p>
@@ -142,12 +127,6 @@ export const pageQuery = graphql`
           phone
           site
           address
-          map {
-            description
-            fluid(maxWidth: 1200, quality: 75) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          }
         }
       }
     }
