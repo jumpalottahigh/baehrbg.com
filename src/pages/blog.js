@@ -53,10 +53,10 @@ class BlogPage extends Component {
             )}
             {this.props.data.contentfulPageMetadata.metaKeywords && (
               <meta
-                name="keywords"
+                name="keywords" 
                 content={
                   this.props.data.contentfulPageMetadata.metaKeywords
-                    .metaKeywords
+                    .metaKeywords + " "
                 }
               />
             )}
