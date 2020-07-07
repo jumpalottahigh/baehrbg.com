@@ -7,6 +7,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
 import Slides from '../components/Slides/Slides'
+import { normalizeAnchorLinks } from '../utils'
 
 const Specialist = styled.section`
   margin-bottom: 3rem;
@@ -75,8 +76,68 @@ const Specialist = styled.section`
   }
 `
 
+const CityTitle = styled.h2`
+  margin-top: -74px;
+  padding-top: 74px;
+`
+
+const CityList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  width: 390px;
+  margin: 40px auto 60px;
+
+  li {
+    display: flex;
+    text-align: left;
+  }
+
+  @media (min-width: 760px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 570px;
+
+    li {
+      font-size: 22px;
+    }
+  }
+
+  @media (min-width: 1020px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 850px;
+
+    li {
+      font-size: 24px;
+    }
+  }
+
+  @media (min-width: 1380px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 1150px;
+
+    li {
+      font-size: 26px;
+    }
+  }
+`
+
 class SpecialistsPage extends Component {
   render() {
+    const specialistsGroupedByCity = {}
+
+    this.props.data.allContentfulSpecialist.edges.forEach(
+      ({ node: specialist }) => {
+        if (!specialistsGroupedByCity.hasOwnProperty(specialist.city)) {
+          specialistsGroupedByCity[specialist.city] = []
+        }
+
+        specialistsGroupedByCity[specialist.city].push(specialist)
+      }
+    )
+    const cities = Object.keys(specialistsGroupedByCity)
+
     return (
       <Layout>
         {this.props.data.contentfulPageMetadata && (
@@ -108,47 +169,63 @@ class SpecialistsPage extends Component {
               fluid={this.props.data.contentfulPageMetadata.heroImage.fluid}
             />
           )}
-          {this.props.data.allContentfulSpecialist.edges.map(
-            ({ node: specialist }) => (
-              <Link key={specialist.id} to={`/specialists/` + specialist.slug}>
-                <h2>{specialist.city}</h2>
-                <Specialist>
-                  <div className="left">
-                    {specialist.pictures != null && (
-                      <div className="image-wrapper">
-                        <div className="image-container">
-                          {specialist.pictures.length > 1 ? (
-                            <Slides data={specialist.pictures} onlyImages />
-                          ) : (
-                            <Img
-                              fluid={specialist.pictures[0].fluid}
-                              alt={specialist.pictures[0].description}
-                            />
-                          )}
+
+          {/* Anchor links to cities */}
+          <CityList>
+            {cities.map((city) => (
+              <li>
+                <a href={`#${normalizeAnchorLinks(city)}`}>{city}</a>
+              </li>
+            ))}
+          </CityList>
+
+          {/* Specialists grouped by city */}
+          {cities.map((city) => (
+            <React.Fragment key={city}>
+              <CityTitle id={normalizeAnchorLinks(city)}>{city}</CityTitle>
+              {specialistsGroupedByCity[city].map((specialist) => (
+                <Link
+                  key={specialist.id}
+                  to={`/specialists/` + specialist.slug}
+                >
+                  <Specialist>
+                    <div className="left">
+                      {specialist.pictures != null && (
+                        <div className="image-wrapper">
+                          <div className="image-container">
+                            {specialist.pictures.length > 1 ? (
+                              <Slides data={specialist.pictures} onlyImages />
+                            ) : (
+                              <Img
+                                fluid={specialist.pictures[0].fluid}
+                                alt={specialist.pictures[0].description}
+                              />
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="right">
-                    <div className="description-wrapper">
-                      <h2>{specialist.name}</h2>
-                      <p>{specialist.phone}</p>
-                      <p>{specialist.email}</p>
-                      <p>{specialist.address}</p>
-                    </div>
-                    <div className="map-wrapper">
-                      {specialist && specialist.map && (
-                        <Img
-                          fluid={specialist.map.fluid}
-                          alt={specialist.map.title}
-                        />
                       )}
                     </div>
-                  </div>
-                </Specialist>
-              </Link>
-            )
-          )}
+                    <div className="right">
+                      <div className="description-wrapper">
+                        <h2>{specialist.name}</h2>
+                        <p>{specialist.phone}</p>
+                        <p>{specialist.email}</p>
+                        <p>{specialist.address}</p>
+                      </div>
+                      <div className="map-wrapper">
+                        {specialist && specialist.map && (
+                          <Img
+                            fluid={specialist.map.fluid}
+                            alt={specialist.map.title}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </Specialist>
+                </Link>
+              ))}
+            </React.Fragment>
+          ))}
         </Container>
       </Layout>
     )
