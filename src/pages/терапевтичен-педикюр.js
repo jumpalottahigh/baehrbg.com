@@ -90,6 +90,11 @@ class PartnerTypesPage extends Component {
           </Helmet>
         )}
         <Container>
+          {this.props.data.contentfulPageMetadata.heroImage && (
+            <Img
+              fluid={this.props.data.contentfulPageMetadata.heroImage.fluid}
+            />
+          )}
           {this.props.data.allContentfulPartnerTypes.edges.map(
             ({ node: partner }) => (
               <Link
@@ -166,6 +171,11 @@ export const partnerTypesPageQuery = graphql`
       }
       metaKeywords {
         metaKeywords
+      }
+      heroImage {
+        fluid(maxWidth: 1200, quality: 75) {
+          ...GatsbyContentfulFluid_withWebp
+        }
       }
     }
   }

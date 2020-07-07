@@ -103,6 +103,11 @@ class SpecialistsPage extends Component {
           </Helmet>
         )}
         <Container>
+          {this.props.data.contentfulPageMetadata.heroImage && (
+            <Img
+              fluid={this.props.data.contentfulPageMetadata.heroImage.fluid}
+            />
+          )}
           {this.props.data.allContentfulSpecialist.edges.map(
             ({ node: specialist }) => (
               <Link key={specialist.id} to={`/specialists/` + specialist.slug}>
@@ -187,6 +192,11 @@ export const specialistsPageQuery = graphql`
       }
       metaKeywords {
         metaKeywords
+      }
+      heroImage {
+        fluid(maxWidth: 1200, quality: 75) {
+          ...GatsbyContentfulFluid_withWebp
+        }
       }
     }
   }

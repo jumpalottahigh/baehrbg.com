@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql, Link } from 'gatsby'
+import Img from 'gatsby-image'
 
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
@@ -63,6 +64,11 @@ class BlogPage extends Component {
           </Helmet>
         )}
         <Container>
+          {this.props.data.contentfulPageMetadata.heroImage && (
+            <Img
+              fluid={this.props.data.contentfulPageMetadata.heroImage.fluid}
+            />
+          )}
           {this.props.data.allContentfulBlogPost.edges.map(({ node: blog }) => (
             <Link key={blog.id} to={`/blog/` + blog.slug}>
               <Blog>
@@ -128,6 +134,11 @@ export const blogPageQuery = graphql`
       }
       metaKeywords {
         metaKeywords
+      }
+      heroImage {
+        fluid(maxWidth: 1200, quality: 75) {
+          ...GatsbyContentfulFluid_withWebp
+        }
       }
     }
   }
