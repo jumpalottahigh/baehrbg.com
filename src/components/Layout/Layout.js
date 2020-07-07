@@ -6,6 +6,7 @@ import HamburgerMenu from './HamburgerMenu'
 import Contacts from '../Contacts/Contacts'
 import CookieConsent from '../CookieConsent/CookieConsent'
 import Footer from './Footer'
+import BackToTop from '../BackToTop'
 
 import 'normalize.css'
 import './layout.css'
@@ -45,7 +46,7 @@ const Layout = ({ children }) => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <React.Fragment>
         <Helmet
           title={data.contentfulHomePage.metaTitle}
@@ -86,6 +87,7 @@ const Layout = ({ children }) => (
         <Contacts />
         <Footer />
         <CookieConsent data={data.contentfulCookieConsent} />
+        <BackToTop />
       </React.Fragment>
     )}
   />

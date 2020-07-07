@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import Layout from '../components/Layout/Layout'
 import Container from '../components/Container/Container'
@@ -69,6 +70,9 @@ const AboutPage = ({ data }) => {
         </Helmet>
       )}
       <Container>
+        {data.contentfulPageMetadata.heroImage && (
+          <Img fluid={data.contentfulPageMetadata.heroImage.fluid} />
+        )}
         {data.allContentfulZaNas.edges.map(({ node: person }) => (
           <Person key={person.id}>
             <div className="left">
@@ -131,6 +135,11 @@ export const aboutPageQuery = graphql`
       }
       metaKeywords {
         metaKeywords
+      }
+      heroImage {
+        fluid(maxWidth: 1200, quality: 75) {
+          ...GatsbyContentfulFluid_withWebp
+        }
       }
     }
   }
