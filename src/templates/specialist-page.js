@@ -45,7 +45,7 @@ class SpecialistPageTemplate extends React.Component {
           {specialist.textCV != null && (
             <SpecialistBody
               dangerouslySetInnerHTML={{
-                __html: specialist.textCV.textCV,
+                __html: specialist.textCV.childMarkdownRemark.html,
               }}
             />
           )}
@@ -64,7 +64,9 @@ export const pageQuery = graphql`
       slug
       name
       textCV {
-        textCV
+        childMarkdownRemark {
+          html
+        }
       }
       pictures {
         id
