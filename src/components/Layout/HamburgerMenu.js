@@ -200,10 +200,7 @@ class HamburgerMenu extends Component {
         { name: `Продукти`, path: `/categories` },
         { name: `Обучения`, path: `/trainings` },
         { name: `Специалисти`, path: `/specialists` },
-        { name: `Партньори`, path: `/терапевтичен-педикюр` },
-        { name: `Промоции`, path: `/promotions` },
         { name: `Блог`, path: `/blog` },
-        { name: `За нас`, path: `/about` },
       ],
     }
   }
@@ -252,25 +249,10 @@ class HamburgerMenu extends Component {
                   {this.state.routes[4].name}
                 </Link>
               </li>
-              <li>
-                <Link activeClassName="active" to={this.state.routes[5].path}>
-                  {this.state.routes[5].name}
-                </Link>
-              </li>
-              <li>
-                <Link activeClassName="active" to={this.state.routes[6].path}>
-                  {this.state.routes[6].name}
-                </Link>
-              </li>
-              <li>
-                <Link activeClassName="active" to={this.state.routes[7].path}>
-                  {this.state.routes[7].name}
-                </Link>
-              </li>
             </ul>
           </TopNav>
           <Menu className={this.state.isOpen ? `open` : ``}>
-            {this.state.routes.map(route => {
+            {this.state.routes.map((route) => {
               let renderValue = (
                 <React.Fragment key={route.name}>
                   <Item>
